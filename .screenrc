@@ -1,0 +1,49 @@
+#####################################################################
+#   .screenrc by Niko Riitala <nri@iki.fi>. Twitter: @nikoriitala   #
+#         No copyright, feel free to use this, as you like.         #
+#####################################################################
+
+# main
+autodetach on
+startup_message off
+escape ^Aa
+vbell off
+#escape \247\247
+#escape \260\260
+escape ^Zz
+# keep dead windows around until i tell them to exit
+zombie cr
+defscrollback 5000
+backtick 1 60 60 $HOME/scripts/uniqueusers
+hardstatus alwayslastline
+hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}- %{+b 1}Darwin/BSD %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= users: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
+term xterm
+
+# windows
+screen -t vitunes 0 vitunes
+screen -t todo 1 vi $HOME/todo.todo
+shelltitle "$ |zsh"
+screen -t vim 2 vim 
+chdir $HOME/Desktop
+screen -t zsh 3 zsh
+chdir $HOME
+screen -t dev-server 4 ssh dev
+#screen -t sys 5 nice top -o cpu -O rsize -s 5 -n 10 -stats pid,command,cpu,rsize
+screen -t dev-server 5 ssh dev
+screen -t zsh 6 zsh
+screen -t zsh 7 zsh
+chdir $HOME/Desktop
+screen -t Desktop 8 zsh
+chdir $HOME
+select 1
+
+# keybindings
+bind ' ' windowlist -b 
+#bindkey "OR" prev  # f3
+#bindkey "OS" next  # f4
+bindkey "[26~" prev  # f14
+bindkey "[28~" next  # f15
+bind = resize =
+bind + resize +1
+bind - resize -1
+bind _ resize max
