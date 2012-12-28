@@ -85,6 +85,9 @@ set scrolloff=5
 " repair wired terminal/vim settings
 set backspace=start,eol,indent
 
+" toggle paste
+set pastetoggle=§
+
 set wrap 
 " }}} 
 
@@ -138,9 +141,6 @@ if (&term == "xterm")
   set t_kl=OD
   set background=dark
 endif
-
-" toggle paste
-set pastetoggle=§
 
 " run zsh inside vim
 let g:ConqueTerm_TERM = 'xterm'
