@@ -1,6 +1,6 @@
 #####################################################################
 #    .zshrc by Niko Riitala <nri@iki.fi>. Twitter: @nikoriitala     #
-#	   	            Based on jdong's zshrc file                     #
+#                   Based on jdong's zshrc file                     #
 #         No copyright, feel free to use this, as you like.         #
 #####################################################################
 
