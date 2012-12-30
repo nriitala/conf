@@ -1,3 +1,8 @@
+# Notes
+- Don't just blindly copy these files, you should review them first. There's some rather idiosyncratic stuff in here.
+
+# Files
+
 ### .vimrc
 - my .vimrc file, optimized for OS X and PHP
 
