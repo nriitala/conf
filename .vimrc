@@ -89,6 +89,18 @@ set backspace=start,eol,indent
 set pastetoggle=§
 
 set wrap 
+
+" backup settings
+set backup
+set backupdir=/home/niko/.vim-backup
+fun! InitBex()
+    let aika = strftime("%y%m%d-%H%M")
+    let myvar = "set backupext=_". aika
+    execute myvar
+    echo myvar
+endfun
+au BufWritePre * call InitBex()
+
 " }}} 
 
 " {{{  Misc settings, mappings, term settings
