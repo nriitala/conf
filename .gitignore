@@ -5,7 +5,20 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
+# Also ignore the files directory from sites upgraded from Drupal 5.
+files
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+
+# Other files
 *~
 *.swp
 *.swo
 .htaccess
+*.log
+*.sql
