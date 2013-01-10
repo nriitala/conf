@@ -408,6 +408,7 @@ diffcolor(){ diff -U3 $1 $2 |sed -e 's/^+/\x1b\[32m+/;s/^-/\x1b[31m-/;s/$/\x1b[0
 # wgetar(){ wget "$@"; foo=`echo "$@" | sed 's:.*/::'`; tar xzvf $foo; }
 
 function png2ico() { convert $1 -resize 16x16 -colors 256 $2 ;}
+mcd(){mkdir -p "$1" && cd "$1"}
 
 function manytimes {
     n=0
