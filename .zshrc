@@ -83,7 +83,7 @@ unsetopt ALL_EXPORT
 alias l='ls -lAh'
 alias lsu='ls -lAhtr'
 alias koko='identify -format "%wx%h"'
-alias lsd='ls -l | grep ^d'
+alias lsd='ls -l | grep "^d"'
 alias sr='screen -rd'
 alias eject='drutil tray eject'
 alias scpresume='rsync --partial --progress'
