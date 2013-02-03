@@ -22,9 +22,9 @@ au BufRead,BufNewFile *.todo        setfiletype todo
 
 " {{{  Vim Settings  
 
-" for Vim 7.3
-let &runtimepath.=',/home/niko/vim/runtime'
-let $VIMRUNTIME = "/home/niko/vim/runtime"
+" for manually compiled Vim 7.3
+"let &runtimepath.=',/home/niko/vim/runtime'
+"let $VIMRUNTIME = "/home/niko/vim/runtime"
 set undofile                " Save undo's after file closes
 set undodir=/home/niko/vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -100,6 +100,7 @@ fun! InitBex()
     echo myvar
 endfun
 au BufWritePre * call InitBex()
+set backupskip=/tmp/*,/private/tmp/*
 
 " }}} 
 
@@ -151,7 +152,7 @@ if (&term == "xterm")
   set t_kd=OB
   set t_kr=OC
   set t_kl=OD
-  set background=dark
+"  set background=dark
 endif
 
 " run zsh inside vim
