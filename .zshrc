@@ -162,8 +162,8 @@ alias duli='drush uli | sed -e "s/^.*user/user/g"'
 autoload -U compinit
 compinit
 #bindkey "^?" backward-delete-char
-#bindkey '^[OH' beginning-of-line
-#bindkey '^[OF' end-of-line
+bindkey '^[OH' beginning-of-line
+bindkey '^[OF' end-of-line
 bindkey '[H' beginning-of-line
 bindkey '[F' end-of-line
 bindkey '^[[5~' up-line-or-history
@@ -270,11 +270,8 @@ fi
 #    fi
 #}
 
-# ei toimiva colorsysteemi os x:lla
-#eval $(dircolors -b ~/.dircolors)
-eval $(dircolors ~/.dir_colors)
+eval $(gdircolors ~/.dir_colors)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-alias ls='ls --color=auto'
 
 # zgitinit and prompt_wunjo_setup must be somewhere in your $fpath, see README for more.
 
