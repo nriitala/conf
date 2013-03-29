@@ -89,10 +89,11 @@ alias eject='drutil tray eject'
 alias scpresume='rsync --partial --progress'
 alias fotosop='open -a "Adobe Photoshop CS4.app"'
 alias un='tar -zxf'
-alias ipscan="nmap -sP 192.168.1.1-255"
-alias salakala="pwgen -Bs 10 1"
-alias www="cd /var/www"
+alias ipscan='nmap -sP 192.168.1.1-255'
+alias salakala='pwgen -Bs 10 1'
+alias www='cd /var/www'
 alias tetris='emacs -q --no-splash -f tetris'
+alias d='dirs -v | head -10'
 
 # typing errors
 alias sco='scp'
@@ -102,7 +103,7 @@ alias exiy='exit'
 alias exity='exit'
 alias dc='cd'
 
-alias slrn="slrn -n"
+alias slrn='slrn -n'
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
 alias la='ls -lah'
