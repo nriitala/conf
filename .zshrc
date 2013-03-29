@@ -144,6 +144,10 @@ alias dcc='drush cc'
 alias dcca='drush cc all'
 alias dpml='drush pml'
 alias duli='drush uli | sed -e "s/^.*user/user/g"'
+alias drdb='drush sql-dump --ordered-dump --result-file=dump.sql'
+alias drun='drush pm-uninstall'
+alias drfe='drush features'
+alias dr='drush'
 
 # alias	=clear
 
