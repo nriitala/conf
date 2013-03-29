@@ -33,7 +33,7 @@ bindkey "[3~" delete-char
 setopt   notify globdots correct pushdtohome cdablevars autolist
 setopt   correctall autocd recexact longlistjobs
 setopt   autoresume histignoredups pushdsilent 
-setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+setopt   autopushd extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
 # Autoload zsh modules when they are referenced
@@ -94,15 +94,16 @@ alias salakala='pwgen -Bs 10 1'
 alias www='cd /var/www'
 alias tetris='emacs -q --no-splash -f tetris'
 alias d='dirs -v | head -10'
-
-# typing errors
-alias sco='scp'
-alias spc='scp'
-alias ci='vi'
-alias exiy='exit'
-alias exity='exit'
-alias dc='cd'
-
+alias 1='cd +1'
+alias 2='cd +2'
+alias 2='cd +2'
+alias 3='cd +3'
+alias 4='cd +4'
+alias 5='cd +5'
+alias 6='cd +6'
+alias 7='cd +7'
+alias 8='cd +8'
+alias 9='cd +9'
 alias slrn='slrn -n'
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
@@ -111,13 +112,21 @@ alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
 alias cp='cp -i'
-alias sl='ls'
 alias du='du -h'
 alias df='df -h'
 alias xc='exit'
-alias cd.='cd ..'
 alias grep='grep -n'
 alias errorlog='watch -n5 "tail -55 /var/log/apache2/error.log"'
+
+# typing errors
+alias sl='ls'
+alias sco='scp'
+alias spc='scp'
+alias ci='vi'
+alias exiy='exit'
+alias exity='exit'
+alias dc='cd'
+alias cd.='cd ..'
 
 # git
 alias gs='git status'
