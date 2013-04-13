@@ -129,6 +129,8 @@ alias dc='cd'
 alias cd.='cd ..'
 
 # git
+alias g='git'
+alias gi='git init'
 alias gs='git status'
 alias ga='git add'
 alias gp='git push'
