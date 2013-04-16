@@ -415,7 +415,7 @@ export LC_ALL=en_US.UTF-8
 bindkey "[3~" delete-char
 umask 002
 
-# [ -s "/home/niko/.scm_breeze/scm_breeze.sh" ] && source "/home/niko/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 diffcolor(){ diff -U3 $1 $2 |sed -e 's/^+/\x1b\[32m+/;s/^-/\x1b[31m-/;s/$/\x1b[0m/'; }
 # wgetar(){ wget "$@"; foo=`echo "$@" | sed 's:.*/::'`; tar xzvf $foo; }
