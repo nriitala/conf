@@ -18,5 +18,8 @@
 ### .screenrc
 - screen config file with neat statusbar and initialized set of windows, some bindings
 
+### .htoprc
+- config file for htop, some basic settings
+
 ### uniqueusers.sh
 - script that count unique users on current machine, used .screenrc / hardstatus
