@@ -21,5 +21,8 @@
 ### .htoprc
 - config file for htop, some basic settings
 
+### .scmbrc
+- scm_breeze
+
 ### uniqueusers.sh
 - script that count unique users on current machine, used .screenrc / hardstatus
