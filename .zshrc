@@ -144,6 +144,8 @@ alias gll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short"
 # check out what have i done today
 alias glll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short | grep `date +%Y-%m-%d` | cut -d ':' -f 3- | paste -s -d ','"
 alias gf="git diff --name-only HEAD~1 master"
+alias gcw='git commit -a -m "$(whatthecommit)"'
+whatthecommit() { curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s' }
 
 # drush
 alias dst='drush status -show-password'
