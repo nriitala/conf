@@ -108,6 +108,8 @@ set backupskip=/tmp/*,/private/tmp/*
 
 " some mappings
 map t :tabnew 
+nnoremap <C-f> :FufFile<CR>
+nnoremap <C-d> :DiffChangesDiffToggle<CR>
 
 " write with sudo ":w!!"
 cnoremap w!! w !sudo tee % >/dev/null
