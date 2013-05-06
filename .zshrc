@@ -117,6 +117,9 @@ alias df='df -h'
 alias xc='exit'
 alias grep='grep -n'
 alias errorlog='watch -n5 "tail -55 /var/log/apache2/error.log"'
+alias icanhas='sudo apt-get install'
+alias remove='sudo apt-get remove'
+alias search='apt-cache search'
 
 # typing errors
 alias sl='ls'
