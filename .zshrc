@@ -80,6 +80,7 @@ unsetopt ALL_EXPORT
 
 # own aliases
 #alias l='ls -lh --time-style=long-iso'
+alias ls='ls --color=auto'
 alias l='ls -lAh'
 alias lsu='ls -lAhtr'
 alias koko='identify -format "%wx%h"'
@@ -140,14 +141,16 @@ alias gp='git push'
 alias gl='git pull'
 alias gd='git diff'
 alias gc='git commit -v'
+alias gcl='git clone'
 alias gca='git commit -v -a'
 #alias gll='git log --graph --pretty=oneline --abbrev-commit'
 #alias gll="git log --graph --pretty=format:'%h %an: %s'"
 alias gll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short"
 # check out what have i done today
 alias glll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short | grep `date +%Y-%m-%d` | cut -d ':' -f 3- | paste -s -d ','"
-alias gf="git diff --name-only HEAD~1 master"
+alias gf='git diff --name-only HEAD~1 master'
 alias gcw='git commit -a -m "$(whatthecommit)"'
+alias gfiles='git diff-tree --no-commit-id --name-only -r'
 whatthecommit() { curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s' }
 
 # drush
