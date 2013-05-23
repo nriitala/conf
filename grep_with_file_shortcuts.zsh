@@ -17,7 +17,6 @@ function grep_with_file_shortcuts()
   i=1
   for line in $results
   do
-    echo "[$i] $line"
     if [[ $# -eq 2 && -f $2 ]]; then 
       file_path=($2(:A))
     else
