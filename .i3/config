@@ -12,7 +12,8 @@
 set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font -misc-fixed-bold-r-normal--13-120-75-75-C-70-iso10646-1
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -140,7 +141,26 @@ bar {
     status_command i3status
     position bottom
     output DVI-D-1
+    colors {
+        background #000000
+        statusline #999999
+         
+        focused_workspace #ffffff #285577
+        active_workspace #ffffff #333333
+        inactive_workspace #888888 #222222
+        urgent_workspace #ffffff #900000
+    }
 }
+
+## Colours
+##---------
+#                       | border    | backgrond | text
+client.focused          #1793D0     #1793D0     #FFFFFF
+client.focused_inactive #333333     #333333     #999999
+client.unfocused        #111111     #111111     #999999
+client.urgent           #FF0000     #8C5665     #FF0000
+client.background       #333333
+
 #bar2 {
 #    status_command /home/niko/scripts/np
 #    position bottom
@@ -162,5 +182,8 @@ for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_togg
 for_window [class="Synapse"] floating enable; border none;
 for_window [class="Xfce4-skype"] floating enable; border none;
 for_window [class="Xfce4-envince"] floating enable; border none;
+for_window [title="Write: Re:*"] floating enable;
+for_window [title="Write: Fwd:*"] floating enable;
+for_window [title="Calculator"] floating enable;
 
 bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
