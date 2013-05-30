@@ -155,6 +155,7 @@ whatthecommit() {
     curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
 }
 www() {
+    # zormal o/
     cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
 }
 
