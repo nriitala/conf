@@ -92,7 +92,6 @@ alias fotosop='open -a "Adobe Photoshop CS4.app"'
 alias un='tar -zxf'
 alias ipscan='nmap -sP 192.168.1.1-255'
 alias salakala='pwgen -Bs 10 1'
-alias www='cd /var/www'
 alias tetris='emacs -q --no-splash -f tetris'
 alias d='dirs -v | head -10'
 alias 1='cd +1'
@@ -151,7 +150,13 @@ alias glll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short | gr
 alias gf='git diff --name-only HEAD~1 master'
 alias gcw='git commit -a -m "$(whatthecommit)"'
 alias gfiles='git diff-tree --no-commit-id --name-only -r'
-whatthecommit() { curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s' }
+
+whatthecommit() {
+    curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
+}
+www() {
+    cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
+}
 
 # drush
 alias dst='drush status -show-password'
