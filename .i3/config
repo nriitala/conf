@@ -139,7 +139,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
     status_command i3status
-    position bottom
+    position top 
     output DVI-D-1
     colors {
         background #000000
