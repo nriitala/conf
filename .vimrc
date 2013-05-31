@@ -126,6 +126,15 @@ if &term =~ "xterm"
  endif
 endif
 
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
 function! Tab_Or_Complete()
   if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
     return "\<C-N>"
@@ -137,6 +146,7 @@ endfunction
 
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F9> :NERDTree<CR>
+nnoremap <silent> <C-D> :DiffSaved<CR>
 
 map <C-t> :tabnew<CR>
 map <C-Left> :tabp<CR>
