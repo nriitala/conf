@@ -130,6 +130,7 @@ alias exiy='exit'
 alias exity='exit'
 alias dc='cd'
 alias cd.='cd ..'
+alias gerp='grep'
 
 # git
 alias g='git'
@@ -155,8 +156,12 @@ whatthecommit() {
     curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
 }
 www() {
-    # zormal o/
-    cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
+    if [ -z $1 ]; then 
+        cd /var/www
+    else
+        # zormal o/
+        cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
+    fi
 }
 
 # drush
