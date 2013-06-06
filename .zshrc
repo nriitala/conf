@@ -118,8 +118,11 @@ alias xc='exit'
 alias grep='grep -n'
 alias errorlog='watch -n5 "tail -55 /var/log/apache2/error.log"'
 alias icanhas='sudo apt-get install'
+alias update='sudo apt-get update'
 alias remove='sudo apt-get remove'
 alias search='apt-cache search'
+alias apt='sudo apt-get'
+alias vi='vim'
 
 # typing errors
 alias sl='ls'
@@ -423,9 +426,16 @@ bindkey -v
 bindkey -M viins '^R' history-incremental-pattern-search-backward
 bindkey -M viins '^F' history-incremental-pattern-search-forward
 
+# exports
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;33'
 export CLICOLOR=1
+export DIRSTACKSIZE=9
+export code="$HOME/code/"
+export temp="$HOME/temp/"
+export roinaa="$HOME/Roinaa/"
+export work="$HOME/Work/"
+export git="$HOME/git/"
 
 source ~/.git-completion.sh
 source ~/.git-flow-completion.sh
@@ -452,4 +462,3 @@ function manytimes {
         n=$((n+1))
     done
 }
-
