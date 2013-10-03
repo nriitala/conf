@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z "$2" ]; then
+  echo "Usage: $ urlgrep <url> <search term>";
+else
+  if [ -z "`curl -s $1 | grep "${2}"`" ];
+    then echo "Sorry Sir, we found nothing!"; else curl -s $1 | grep "${2}";
+  fi
+fi
