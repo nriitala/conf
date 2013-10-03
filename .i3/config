@@ -13,7 +13,8 @@ set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font -misc-fixed-bold-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-bold-r-normal--13-120-75-75-C-70-iso10646-1
+font xft:Ubuntu Mono Bold 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -26,7 +27,10 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec i3-dmenu-desktop
+bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#f8f8f2' -sb '#aff32c' -sf '#181818' -p ' ~/  ' -l 15 -fn sq-12 -i"
+bindsym $mod+Shift+d exec ~/.i3/quickswitch.py --dmenu="dmenu -nb '#181818' -nf '#f8f8f2' -sb '#aff32c' -sf '#181818' -p ' ~/  ' -l 15 -fn sq-12 -i"
 
 # change focus
 bindsym $mod+j focus left
@@ -45,6 +49,20 @@ bindsym $mod+Shift+J move left
 bindsym $mod+Shift+K move down
 bindsym $mod+Shift+L move up
 bindsym $mod+Shift+Odiaeresis move right
+
+# move to another workspace on same screen.
+bindsym Control+$mod+greater workspace next_on_output
+bindsym Control+$mod+less workspace prev_on_output
+bindsym $mod+less workspace next_on_output
+bindsym $mod+Shift+less workspace next_on_output
+
+# move to workspace 10
+bindsym $mod+section workspace 10
+
+# Toggle between 2 workspaces
+bindsym $mod+Tab workspace back_and_forth
+bindsym F1 exec ~/.i3/i3-toggle.py 
+bindsym $mod+1 exec ~/.i3/i3-toggle.py 
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -79,7 +97,7 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
+#bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
@@ -138,6 +156,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    font xft:Ubuntu Mono Bold 10
     status_command i3status
     position top 
     output DVI-D-1
@@ -155,7 +174,8 @@ bar {
 ## Colours
 ##---------
 #                       | border    | backgrond | text
-client.focused          #1793D0     #1793D0     #FFFFFF
+#client.focused          #1793D0     #1793D0     #FFFFFF
+client.focused          #111111     #00cc00     #000000
 client.focused_inactive #333333     #333333     #999999
 client.unfocused        #111111     #111111     #999999
 client.urgent           #FF0000     #8C5665     #FF0000
@@ -180,10 +200,19 @@ bindsym $mod+Mod1+Right workspace next
 # xfce notifies to float
 for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
 for_window [class="Synapse"] floating enable; border none;
+for_window [class="Kupfer"] floating enable; border none;
 for_window [class="Xfce4-skype"] floating enable; border none;
 for_window [class="Xfce4-envince"] floating enable; border none;
 for_window [title="Write: Re:*"] floating enable;
 for_window [title="Write: Fwd:*"] floating enable;
 for_window [title="Calculator"] floating enable;
+for_window [title="File Operation*"] floating enable;
 
 bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
+
+# take screenshot
+bindsym Print exec /home/niko/scripts/screen.sh root
+bindsym Control+Print exec /home/niko/scripts/screen.sh active
+#bindsym Print exec scrot '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'cp $f ~/temp/screenshots/ && scp $f dev:pub/screenshots/'
+#bindsym Mod1+Print exec i3-sensible-terminal -e scrot -s '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'cp $f ~/images/screenshots/ && mv $f /media/shared/dropbox/Dropbox/public/' && sleep 60
+#bindsym $mod+Print exec scrot -u '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'cp $f ~/images/screenshots/ && mv $f /media/shared/dropbox/Dropbox/public/'
