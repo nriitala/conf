@@ -81,7 +81,7 @@ unsetopt ALL_EXPORT
 # own aliases
 #alias l='ls -lh --time-style=long-iso'
 alias ls='ls --color=auto'
-alias l='ls -lAh'
+alias l='ll'
 alias lsu='ls -lAhtr'
 alias koko='identify -format "%wx%h"'
 alias lsd='ls -l | grep "^d"'
@@ -93,7 +93,7 @@ alias un='tar -zxf'
 alias ipscan='nmap -sP 192.168.1.1-255'
 alias salakala='pwgen -Bs 10 1'
 alias tetris='emacs -q --no-splash -f tetris'
-alias d='dirs -v | head -10'
+alias d='dirs -v | head -9 | tail -8'
 alias 1='cd +1'
 alias 2='cd +2'
 alias 2='cd +2'
@@ -107,7 +107,7 @@ alias 9='cd +9'
 alias slrn='slrn -n'
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
-alias la='ls -lah'
+alias la='ll -a'
 alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
@@ -123,6 +123,14 @@ alias remove='sudo apt-get remove'
 alias search='apt-cache search'
 alias apt='sudo apt-get'
 alias vi='vim'
+alias greps='grep -A5 -B5'
+alias tmux='tmux -2'
+alias vimrc='vi ~/.vimrc'
+alias zshrc='vi ~/.zshrc'
+alias hosts='sudo vi /etc/hosts'
+alias vhosts='sudo vi /etc/apache2/sites-enabled/vhosts'
+alias calc='qalc'
+alias devscp='rsync -av --rsh "ssh dev ssh"'
 
 # typing errors
 alias sl='ls'
@@ -133,7 +141,9 @@ alias exiy='exit'
 alias exity='exit'
 alias dc='cd'
 alias cd.='cd ..'
+alias ...='git-root'
 alias gerp='grep'
+alias iv='vi'
 
 # git
 alias g='git'
@@ -146,14 +156,17 @@ alias gd='git diff'
 alias gc='git commit -v'
 alias gcl='git clone'
 alias gca='git commit -v -a'
+alias git-root='cd $(git rev-parse --show-cdup)'
 #alias gll='git log --graph --pretty=oneline --abbrev-commit'
 #alias gll="git log --graph --pretty=format:'%h %an: %s'"
-alias gll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short"
+alias gll="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # check out what have i done today
 alias glll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short | grep `date +%Y-%m-%d` | cut -d ':' -f 3- | paste -s -d ','"
 alias gf='git diff --name-only HEAD~1 master'
 alias gcw='git commit -a -m "$(whatthecommit)"'
 alias gfiles='git diff-tree --no-commit-id --name-only -r'
+alias glog='git shortlog'
+alias glogi='git shortlog -s -n'
 
 whatthecommit() {
     curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
@@ -170,7 +183,7 @@ www() {
 # drush
 alias dst='drush status -show-password'
 alias ddl='drush dl'
-function ddlen() { /usr/local/bin/drush dl "$@" && /usr/local/bin/drush en "$@" -y ; }
+function ddlen() { /usr/bin/drush dl "$@" && /usr/bin/drush en "$@" -y ; }
 alias ddls='drush dl --select'
 alias den='drush en -y'
 alias ddis='drush dis -y'
@@ -182,6 +195,10 @@ alias drdb='drush sql-dump --ordered-dump --result-file=dump.sql'
 alias drun='drush pm-uninstall'
 alias drfe='drush features'
 alias dr='drush'
+alias ddiscache='drush vset cache 0 && drush vset page_compression 0 && drush vset preprocess_js 0 && drush vset preprocess_css 0'
+alias dencache='drush vset cache 1 && drush vset page_compression 1 && drush vset preprocess_js 1 && drush vset preprocess_css 1'
+alias dsdump='drush sql-dump --result-file=dump.sql'
+
 
 # alias	=clear
 
@@ -200,8 +217,10 @@ alias dr='drush'
 autoload -U compinit
 compinit
 #bindkey "^?" backward-delete-char
-bindkey '^[OH' beginning-of-line
-bindkey '^[OF' end-of-line
+#bindkey '^[OH' beginning-of-line
+bindkey '[1~' beginning-of-line
+#bindkey '^[OF' end-of-line
+bindkey '[4~' end-of-line
 bindkey '[H' beginning-of-line
 bindkey '[F' end-of-line
 bindkey '^[[5~' up-line-or-history
@@ -308,7 +327,7 @@ fi
 #    fi
 #}
 
-eval $(gdircolors ~/.dir_colors)
+eval $(dircolors ~/.dir_colors)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # zgitinit and prompt_wunjo_setup must be somewhere in your $fpath, see README for more.
@@ -436,6 +455,7 @@ export temp="$HOME/temp/"
 export roinaa="$HOME/Roinaa/"
 export work="$HOME/Work/"
 export git="$HOME/git/"
+export TERM=xterm-256color
 
 source ~/.git-completion.sh
 source ~/.git-flow-completion.sh
@@ -446,6 +466,7 @@ umask 002
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 [ -s "$HOME/scripts/grep_with_file_shortcuts.zsh" ] && source "$HOME/scripts/grep_with_file_shortcuts.zsh"
+alias gl='git pull'
 
 diffcolor(){ diff -U3 $1 $2 |sed -e 's/^+/\x1b\[32m+/;s/^-/\x1b[31m-/;s/$/\x1b[0m/'; }
 # wgetar(){ wget "$@"; foo=`echo "$@" | sed 's:.*/::'`; tar xzvf $foo; }
@@ -454,11 +475,16 @@ function png2ico() { convert $1 -resize 16x16 -colors 256 $2 ;}
 mcd(){mkdir -p "$1" && cd "$1"}
 
 function manytimes {
-    n=0
-    times=$1
-    shift
-    while [[ $n -lt $times ]]; do
-        $@
-        n=$((n+1))
-    done
+  n=0
+  times=$1
+  shift
+  while [[ $n -lt $times ]]; do
+    $@
+    n=$((n+1))
+  done
+}
+#. /home/niko/code/powerline/powerline/bindings/zsh/powerline.zsh
+
+function xrdbload() {
+  xrdb -load ~/.Xdefaults && xrdb -load ~/.Xresources
 }
