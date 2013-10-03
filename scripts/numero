@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    google contacts list --field name,phone "" | grep -v "none" | sed -e 's/+358/0/g';
+else
+    google contacts list --field name,phone "" | grep -i "$*" | cut -d ';' -f 1 | sed -e 's/+358/0/g' -e 's/\(.*,\)*[^0-9]*/\1/g';
+fi
+
