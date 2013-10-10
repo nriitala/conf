@@ -189,6 +189,9 @@ command Z :ConqueTermVSplit zsh
 " Change current work directory
 command CD :cd %:p:h
 
+" Map leader key for nercommenter
+let mapleader = "," 
+
 " CtrlP settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -224,6 +227,7 @@ Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Bundle 'flazz/vim-colorschemes'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+Bundle 'scrooloose/nerdcommenter'
 
 filetype plugin indent on     " required!
 
