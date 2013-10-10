@@ -53,8 +53,8 @@ bindsym $mod+Shift+Odiaeresis move right
 # move to another workspace on same screen.
 bindsym Control+$mod+greater workspace next_on_output
 bindsym Control+$mod+less workspace prev_on_output
-bindsym $mod+less workspace next_on_output
-bindsym $mod+Shift+less workspace next_on_output
+#bindsym $mod+less workspace next_on_output
+#bindsym $mod+Shift+less workspace next_on_output
 
 # move to workspace 10
 bindsym $mod+section workspace 10
@@ -95,6 +95,11 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindcode $mod+d focus child
+
+# Move current window to scratchpad
+bindsym $mod+Shift+greater move scratchpad
+# Show first scratchpad window
+bindsym $mod+less scratchpad show
 
 # switch to workspace
 #bindsym $mod+1 workspace 1
@@ -200,6 +205,7 @@ bindsym $mod+Mod1+Right workspace next
 # xfce notifies to float
 for_window [class="Xfce4-notifyd"] floating enable; border none; focus mode_toggle
 for_window [class="Synapse"] floating enable; border none;
+for_window [title="Firebug*"] border none;
 for_window [class="Kupfer"] floating enable; border none;
 for_window [class="Xfce4-skype"] floating enable; border none;
 for_window [class="Xfce4-envince"] floating enable; border none;
