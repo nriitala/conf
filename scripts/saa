@@ -1,0 +1,8 @@
+#!/bin/sh
+SAA=`curl --silent "http://weather.yahooapis.com/forecastrss?p=FIXX0002&u=c" | awk -F'- ' '/<b>Forecast/{getline; gsub("<.*","",$2); print $2}'`
+if [ -n "$SAA" ];
+then
+  echo "Helsinki: ${SAA}";
+else
+  echo "Weather not available";
+fi
