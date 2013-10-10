@@ -23,6 +23,3 @@
 
 ### .scmbrc
 - scm_breeze
-
-### uniqueusers.sh
-- script that count unique users on current machine, used .screenrc / hardstatus
