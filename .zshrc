@@ -187,6 +187,7 @@ function ddlen() { /usr/bin/drush dl "$@" && /usr/bin/drush en "$@" -y ; }
 alias ddls='drush dl --select'
 alias den='drush en -y'
 alias ddis='drush dis -y'
+alias dup='drush up -y'
 alias dcca='drush cc all'
 alias dcron='drush cron'
 alias dpml='drush pml'
