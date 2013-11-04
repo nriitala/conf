@@ -4,7 +4,7 @@
 ## Files
 
 ### .vimrc
-- my .vimrc file, optimized for OS X and PHP
+- my .vimrc file, optimized for PHP, used with non-bsd Linux
 
 ### manage-vim-backups.sh
 - used to clean old backups (~/.vim-backup), see .vimrc
