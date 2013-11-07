@@ -199,7 +199,9 @@ alias dr='drush'
 alias ddiscache='drush vset cache 0 && drush vset page_compression 0 && drush vset preprocess_js 0 && drush vset preprocess_css 0'
 alias dencache='drush vset cache 1 && drush vset page_compression 1 && drush vset preprocess_js 1 && drush vset preprocess_css 1'
 alias dsdump='drush sql-dump --result-file=dump.sql'
-
+alias doffline='drush vset maintenance_mode 1 --yes'
+alias donline='drush vset maintenance_mode 0 --yes'
+function dupwd() { PW=`pwgen -Bs 10 1`; drush upwd --password="${PW}" admin && echo "New password for admin: ${PW}" }
 
 # alias	=clear
 
