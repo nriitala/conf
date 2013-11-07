@@ -189,6 +189,9 @@ command Z :ConqueTermVSplit zsh
 " Change current work directory
 command CD :cd %:p:h
 
+" Count non-blank lines on current file
+command Lines :!cat %|sed '/^\s*$/d'|wc -l
+
 " Map leader key for nercommenter
 let mapleader = "," 
 
