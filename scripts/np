@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ARTIST=`/home/niko/scripts/spotify-control.sh getArtist`
+TITLE=`/home/niko/scripts/spotify-control.sh getTitle`
+echo "np: $ARTIST - $TITLE"
+
