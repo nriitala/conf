@@ -1,14 +1,24 @@
 " Normal Mode Mappings
 nmap <C-f> /
 nmap <C-w> :tabclose<CR>
-nnoremap <C-c> <C-v><C-c>
-nmap <C-v> <C-v><C-v>
-nmap <C-x> <C-v><C-x>
-nmap <C-a> <C-v><C-a>
-nmap <C-u> <C-v><C-u>
- 
+"nnoremap <C-c> <C-v><C-c>
+nnoremap <C-v> <C-v><C-v>
+nnoremap <C-x> <C-v><C-x>
+nnoremap <C-a> <C-v><C-a>
+nnoremap <C-u> <C-v><C-u>
+nnoremap m 10j
+nnoremap , 10k
+nnoremap <C-Right> gt
+nnoremap <C-Left> gT
+
 " Insert Mode Mappings
 :imap -builtin <C-c> <C-v><C-c>
 :imap -builtin <C-v> <C-v><C-v>
 :imap -builtin <C-x> <C-v><C-x>
 :imap -builtin <C-a> <C-v><C-a>
+":set guioptions+=m
+
+"set hintkeys=asdfghjklöä
+"js editor.defaultRegister="+"
+"set defsearch=duckduckgo
+colorscheme dllu
