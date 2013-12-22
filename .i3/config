@@ -29,8 +29,8 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec i3-dmenu-desktop
-bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -nb '#181818' -nf '#f8f8f2' -sb '#aff32c' -sf '#181818' -p ' ~/  ' -l 15 -fn sq-12 -i"
-bindsym $mod+Shift+d exec ~/.i3/quickswitch.py --dmenu="dmenu -nb '#181818' -nf '#f8f8f2' -sb '#aff32c' -sf '#181818' -p ' ~/  ' -l 15 -fn sq-12 -i"
+bindsym Mod1+space exec i3-dmenu-desktop --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 15 -fn sq-12 -i"
+bindsym $mod+space exec ~/.i3/quickswitch.py --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 15 -fn sq-12 -i"
 
 # change focus
 bindsym $mod+j focus left
