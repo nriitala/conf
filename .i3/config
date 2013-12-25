@@ -24,7 +24,7 @@ floating_modifier $mod
 bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
-bindsym $mod+Shift+Q kill
+bindsym $mod+Q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -33,9 +33,10 @@ bindsym Mod1+space exec i3-dmenu-desktop --dmenu="dmenu -nb '#111111' -nf '#f8f8
 bindsym $mod+space exec ~/.i3/quickswitch.py --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 15 -fn sq-12 -i"
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
+#bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 bindsym $mod+odiaeresis focus right
 
 # alternatively, you can use the cursor keys:
@@ -88,7 +89,7 @@ bindsym $mod+e layout default
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -164,7 +165,7 @@ bar {
     font xft:Ubuntu Mono Bold 10
     status_command i3status
     position top 
-    output DVI-D-1
+    output LVDS1
     colors {
         background #000000
         statusline #999999
