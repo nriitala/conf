@@ -131,6 +131,7 @@ alias hosts='sudo vi /etc/hosts'
 alias vhosts='sudo vi /etc/apache2/sites-enabled/vhosts'
 alias calc='qalc'
 alias devscp='rsync -av --rsh "ssh dev ssh"'
+alias irs='ssh -t xob screen -rd'
 
 # typing errors
 alias sl='ls'
