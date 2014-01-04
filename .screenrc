@@ -14,6 +14,7 @@ zombie cr
 nethack on
 defscrollback 5000
 backtick 1 60 60 $HOME/scripts/uniqueusers.sh
+term xterm
 
 # HARDSTATUS
 hardstatus alwayslastline
@@ -22,8 +23,8 @@ hardstatus alwayslastline
 # hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}- %{+b 1}Darwin/BSD %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= users: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
 # for real operating systems
 #hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= users: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
-hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= usr: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
-term xterm
+#hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= usr: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
+hardstatus string '%{= 9}%{w}%-Lw%{r}[%{W}% %{g}%t%{r}]%{= 9}%{w}%+Lw%<%{= 9}%-=%{Y}%H%{g}|%{w}u:%{y}%1`%{g}|%{w}%D %{W}%d.%m.%Y %{Y}%c'
 
 # SCREEN WINDOWS
 #screen -t vitunes 0 vitunes # os x legacy
@@ -57,7 +58,9 @@ bindkey "9" select 9
 
 # MOUSEWHEEL
 # termcapinfo xterm* ti@:te@
-# Screen 256 colors
+# allow bold colors
 attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color
 defbce "on" 
