@@ -8,45 +8,56 @@ autodetach on
 startup_message off
 escape ^Aa
 vbell off
-#escape \247\247
-#escape \260\260
 escape ^Zz
 # keep dead windows around until i tell them to exit
 zombie cr
 nethack on
 defscrollback 5000
 backtick 1 60 60 $HOME/scripts/uniqueusers.sh
+
+# HARDSTATUS
 hardstatus alwayslastline
+# neat version control ;)
 # for os x
 # hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}- %{+b 1}Darwin/BSD %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= users: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
-hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= users: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
+# for real operating systems
+#hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= users: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
+hardstatus string '%{= 9}%{g}[ %{+b y}%H %{-b g}] %{= 9}%-Lw%{= 9}%50> %{w}%n*%f %t%{= 9}%+Lw%< %{= 9}%-= usr: %{y}%1` %{g}[ %{W}%D %{C}%d.%m.%Y %{W}%c %{g}]'
 term xterm
 
-# windows
-screen -t vitunes 0 vitunes
-screen -t todo 1 vi $HOME/todo.todo
+# SCREEN WINDOWS
+#screen -t vitunes 0 vitunes # os x legacy
+#screen -t todo 1 vi $HOME/todo.todo
 shelltitle "$ |zsh"
-screen -t vim 2 vim 
-chdir $HOME/Desktop
-screen -t zsh 3 zsh
-chdir $HOME
-screen -t dev-server 4 ssh dev
+#screen -t vim 2 vim 
+#chdir $HOME
 #screen -t sys 5 nice top -o cpu -O rsize -s 5 -n 10 -stats pid,command,cpu,rsize
-screen -t dev-server 5 ssh dev
-screen -t zsh 6 zsh
-screen -t zsh 7 zsh
-chdir $HOME/Desktop
-screen -t Desktop 8 zsh
-chdir $HOME
-select 1
+#select 1
 
-# keybindings
+# KEYBINDINGS
 bind ' ' windowlist -b 
-#bindkey "OR" prev  # f3
-#bindkey "OS" next  # f4
-bindkey "[26~" prev  # f14
-bindkey "[28~" next  # f15
+#bindkey "[26~" prev  # f14
+bindkey "[1;3D" prev  # f14
+#bindkey "[28~" next  # f15
+bindkey "[1;3C" next  # f15
 bind = resize =
 bind + resize +1
 bind - resize -1
 bind _ resize max
+bindkey "0" select 0
+bindkey "1" select 1
+bindkey "2" select 2
+bindkey "3" select 3
+bindkey "4" select 4
+bindkey "5" select 5
+bindkey "6" select 6
+bindkey "7" select 7
+bindkey "8" select 8
+bindkey "9" select 9
+
+# MOUSEWHEEL
+# termcapinfo xterm* ti@:te@
+# Screen 256 colors
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on" 
