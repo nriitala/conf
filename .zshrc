@@ -471,6 +471,10 @@ export LC_ALL=en_US.UTF-8
 bindkey "[3~" delete-char
 umask 002
 
+# export display when logging from remote
+# [ -n "$SSH_CLIENT" ] && export DISPLAY=$(echo $SSH_CLIENT | awk '{ print $1 }'):0.0
+[ -n "$SSH_CLIENT" ] && export DISPLAY=:0.0
+
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 [ -s "$HOME/scripts/grep_with_file_shortcuts.zsh" ] && source "$HOME/scripts/grep_with_file_shortcuts.zsh"
 alias gl='git pull'
