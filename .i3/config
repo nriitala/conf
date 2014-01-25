@@ -215,6 +215,9 @@ for_window [title="Write: Fwd:*"] floating enable;
 for_window [title="Calculator"] floating enable;
 for_window [title="File Operation*"] floating enable;
 
+# assing default workspaces to stuff
+assign [title="VLC*"] 1
+
 bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
 
 # take screenshot
