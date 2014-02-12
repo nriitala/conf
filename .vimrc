@@ -236,9 +236,12 @@ filetype plugin indent on     " required!
 
 " }}}
 
-"set rtp+=/home/niko/code/powerline/powerline/bindings/vim
-"let g:Powerline_symbols = 'fancy'
+set rtp+=/home/niko/code/powerline/powerline/bindings/vim
+let g:Powerline_symbols = 'fancy'
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
 
 set clipboard=unnamedplus
 "colorscheme adrian
-colorscheme candy
+colorscheme tuutti
