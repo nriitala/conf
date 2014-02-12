@@ -134,6 +134,7 @@ alias calc='qalc'
 alias devscp='rsync -av --rsh "ssh dev ssh"'
 alias irs='ssh -t xob screen -rd'
 alias tyokalenteri='google calendar list'
+alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
 
 # typing errors
