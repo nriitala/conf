@@ -218,7 +218,8 @@ for_window [title="File Operation*"] floating enable;
 # assing default workspaces to stuff
 assign [title="VLC*"] 1
 
-bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
+# bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
+bindsym $mod+c exec xsel -o | dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p Calculate: | xargs echo | bc 2>&1 | dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p Answer: | xsel -i
 
 # take screenshot
 bindsym Print exec /home/niko/scripts/screen.sh root
