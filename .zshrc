@@ -136,6 +136,8 @@ alias irs='ssh -t xob screen -rd'
 alias tyokalenteri='google calendar list'
 alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
+alias tyo_umount='fusermount -u $HOME/Roinaa/tyoasiat'
+alias tyo_mount='encfs $HOME/Roinaa/.encrypted $HOME/Roinaa/tyoasiat'
 
 # typing errors
 alias sl='ls'
