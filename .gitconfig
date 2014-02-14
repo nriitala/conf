@@ -1,0 +1,17 @@
+[user]
+	name = YOURNAME
+	email = YOUR@EMAIL.FOO
+[color]
+	ui = true
+[core]
+	excludesfile = /home/YOURUSERNAME/.gitignore
+[merge]
+	tool = diffconflicts
+[mergetool "diffconflicts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+	keepBackup = false
+#[push]
+#	default = simple
+[github]
+	user = YOURUSERNAME
