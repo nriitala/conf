@@ -138,6 +138,7 @@ alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
 alias tyo_umount='fusermount -u $HOME/Roinaa/tyoasiat'
 alias tyo_mount='encfs $HOME/Roinaa/.encrypted $HOME/Roinaa/tyoasiat'
+alias siilo_umount='fusermount -u /media/siilo'
 
 # typing errors
 alias sl='ls'
@@ -487,6 +488,16 @@ diffcolor(){ diff -U3 $1 $2 |sed -e 's/^+/\x1b\[32m+/;s/^-/\x1b[31m-/;s/$/\x1b[0
 
 function png2ico() { convert $1 -resize 16x16 -colors 256 $2 ;}
 mcd(){mkdir -p "$1" && cd "$1"}
+
+function siilo() {
+  if mountpoint -q "/media/siilo" ; then
+    echo "siilo was mounted"
+    chdir /media/siilo
+  else
+    echo "mounting siilo..."
+    sshfs host:path/siilo /media/siilo && chdir /media/siilo
+  fi
+}
 
 function manytimes {
   n=0
