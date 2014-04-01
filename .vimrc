@@ -234,6 +234,7 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'takac/vim-commandcaps'
 
 filetype plugin indent on     " required!
 
