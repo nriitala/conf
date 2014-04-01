@@ -102,10 +102,13 @@ endfun
 au BufWritePre * call InitBex()
 set backupskip=/tmp/*,/private/tmp/*
 
-" W for write
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
-cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
-cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+" fix mistype :W and :Q
+command! -bang -range=% -complete=file -nargs=* WQ <line1>,<line2>wq<bang> <args>
+command! -bang -complete=file -nargs=* Qa qa<bang>
+command! -bang -complete=file -nargs=* QA qa<bang>
+command! -bang -range=% -complete=file -nargs=* Wq <line1>,<line2>wq<bang> <args>
+command! -bang -range=% -complete=file -nargs=* W <line1>,<line2>w<bang> <args>
+command! -bang Q quit<bang>
 
 " Powerline
   " Remove delay between modes.
