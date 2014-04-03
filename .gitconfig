@@ -1,10 +1,10 @@
 [user]
-	name = YOURNAME
-	email = YOUR@EMAIL.FOO
+	name = nriitala
+	email = nri@iki.fi
 [color]
 	ui = true
 [core]
-	excludesfile = /home/YOURUSERNAME/.gitignore
+	excludesfile = /home/niko/.gitignore
 [merge]
 	tool = diffconflicts
 [mergetool "diffconflicts"]
@@ -14,4 +14,6 @@
 #[push]
 #	default = simple
 [github]
-	user = YOURUSERNAME
+	user = nriitala
+[push]
+	default = current
