@@ -42,7 +42,7 @@ zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 #zmodload -ap zsh/mapfile mapfile
 
-PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:/usr/games/:~/bin/:$PATH:/home/niko/scripts/"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:~/bin/:$PATH:/home/niko/scripts"
 TZ="Europe/Helsinki"
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
