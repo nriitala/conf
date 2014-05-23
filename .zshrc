@@ -88,12 +88,12 @@ alias lsd='ls -l | grep "^d"'
 alias sr='screen -rd'
 alias eject='drutil tray eject'
 alias scpresume='rsync --partial --progress'
-alias fotosop='open -a "Adobe Photoshop CS4.app"'
 alias un='tar -zxf'
 alias ipscan='nmap -sP 192.168.1.1-255'
 alias salakala='pwgen -Bs 10 1'
 alias salakala_serious_business='pwgen -ys 20 1'
 alias tetris='emacs -q --no-splash -f tetris'
+alias links2='links2 -g'
 alias d='dirs -v | head -9 | tail -8'
 alias 1='cd +1'
 alias 2='cd +2'
@@ -129,7 +129,7 @@ alias greps='grep -A5 -B5'
 alias tmux='tmux -2'
 alias vimrc='vi ~/.vimrc'
 alias zshrc='vi ~/.zshrc'
-alias hosts='sudo vi /etc/hosts'
+alias hosts='vi /etc/hosts'
 alias vhosts='sudo vi /etc/apache2/sites-enabled/vhosts'
 alias calc='qalc'
 alias devscp='rsync -av --rsh "ssh dev ssh"'
@@ -137,8 +137,8 @@ alias irs='ssh -t xob screen -rd'
 alias tyokalenteri='google calendar list'
 alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
-alias tyo_umount='fusermount -u $HOME/Roinaa/tyoasiat'
-alias tyo_mount='encfs $HOME/Roinaa/.encrypted $HOME/Roinaa/tyoasiat'
+alias tyo_umount='fusermount -u $HOME/Roinaa/tyoasiat && rmdir $HOME/Roinaa/tyoasiat'
+alias tyo_mount='mkdir $HOME/Roinaa/tyoasiat && encfs $HOME/Roinaa/.encrypted $HOME/Roinaa/tyoasiat || rmdir $HOME/Roinaa/tyoasiat'
 alias siilo_umount='fusermount -u /media/siilo'
 
 # typing errors
@@ -509,6 +509,7 @@ function manytimes {
     n=$((n+1))
   done
 }
+
 #. /home/niko/code/powerline/powerline/bindings/zsh/powerline.zsh
 
 function xrdbload() {
