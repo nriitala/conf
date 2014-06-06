@@ -207,6 +207,10 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_match_window_reversed = 0
 
+" Double slash -> Case insensitive search
+map // /\c
+map ?? ?\c
+
 " }}}
 
 " {{{ Vundle
