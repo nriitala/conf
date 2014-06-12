@@ -3,7 +3,7 @@
 Some background information about my system:
 I'm using Xubuntu without xfdesktop and xfce-panel and with i3 window manager (deb http://debian.sur5r.net/i3/). Trying to benefit from desktop environment (essential power saving tools etc. for laptop) but keep it as minimalistic and efficient as possible without actual graphical user interface.
 
-## main files
+## dotfiles
 
 ### .vimrc
 - my .vimrc file, optimized for PHP, used with non-bsd Linux
