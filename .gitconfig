@@ -5,6 +5,9 @@
 	ui = true
 [core]
 	excludesfile = /home/niko/.gitignore
+	filemode = false
+	bare = false
+	logallrefupdates = true
 [merge]
 	tool = diffconflicts
 [mergetool "diffconflicts"]
