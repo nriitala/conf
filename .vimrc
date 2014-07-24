@@ -64,6 +64,10 @@ set expandtab
 set autoindent
 set smartindent
 
+" reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
 " show line numbers by default
 set number
 
@@ -101,6 +105,11 @@ fun! InitBex()
 endfun
 au BufWritePre * call InitBex()
 set backupskip=/tmp/*,/private/tmp/*
+
+" W for write
+"cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+"cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
+"cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
 
 " fix mistype :W and :Q
 command! -bang -range=% -complete=file -nargs=* WQ <line1>,<line2>wq<bang> <args>
