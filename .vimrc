@@ -172,9 +172,17 @@ nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F9> :NERDTree<CR>
 nnoremap <silent> <C-D> :DiffSaved<CR>
 
-" Unimpaired: Move line up/down
-map <S-Up> [e
-map <S-Down> ]e
+" Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+" Move lines up and down 
+nnoremap <S-j> :m .+1<CR>==
+nnoremap <S-k> :m .-2<CR>==
+inoremap <S-j> <Esc>:m .+1<CR>==gi
+inoremap <S-k> <Esc>:m .-2<CR>==gi
+vnoremap <S-j> :m '>+1<CR>gv=gv
+vnoremap <S-k> :m '<-2<CR>gv=gv
 
 map <C-l> :vertical wincmd f<CR>
 map <C-p> :CtrlP<CR>
