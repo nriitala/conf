@@ -173,16 +173,23 @@ nnoremap <silent> <F9> :NERDTree<CR>
 nnoremap <silent> <C-D> :DiffSaved<CR>
 
 " Reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
+"vnoremap < <gv
+"vnoremap > >gv
 
 " Move lines up and down 
 nnoremap <S-j> :m .+1<CR>==
 nnoremap <S-k> :m .-2<CR>==
 "noremap <S-k> :m .-2<CR>==gi<ESC>
 "noremap <S-j> :m .+1<CR>==gi<ESC>
-vnoremap <S-j> :m '>+1<CR>gv=gv
-vnoremap <S-k> :m '<-2<CR>gv=gv
+" " " "vnoremap <S-j> :m '>+1<CR>gv=gv
+" " " "vnoremap <S-k> :m '<-2<CR>gv=gv
+
+nnoremap <S-Down> :m .+1<CR>==
+nnoremap <S-Up> :m .-2<CR>==
+inoremap <S-Down> <Esc>:m .+1<CR>==gi
+inoremap <S-Up> <Esc>:m .-2<CR>==gi
+vnoremap <S-Down> :m '>+1<CR>gv=gv
+vnoremap <S-Up> :m '<-2<CR>gv=gv
 
 map <C-l> :vertical wincmd f<CR>
 map <C-p> :CtrlP<CR>
