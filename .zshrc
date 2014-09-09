@@ -79,14 +79,11 @@ unsetopt ALL_EXPORT
 # # --------------------------------------------------------------------
 
 # own aliases
-#alias l='ls -lh --time-style=long-iso'
-alias ls='ls --color=auto'
-alias l='ll'
-alias lsu='ls -lAhtr'
+# TODO - make separate file and/or categorize aliases
 alias koko='identify -format "%wx%h"'
-alias lsd='ls -l | grep "^d"'
 alias sr='screen -rd'
 alias eject='drutil tray eject'
+alias cupholder='eject' # legacy
 alias scpresume='rsync --partial --progress'
 alias un='tar -zxf'
 alias ipscan='nmap -sP 192.168.1.1-255'
@@ -94,21 +91,9 @@ alias salakala='pwgen -Bs 10 1'
 alias salakala_serious_business='pwgen -ys 20 1'
 alias tetris='emacs -q --no-splash -f tetris'
 alias links2='links2 -g'
-alias d='dirs -v | head -9 | tail -8'
-alias 1='cd +1'
-alias 2='cd +2'
-alias 2='cd +2'
-alias 3='cd +3'
-alias 4='cd +4'
-alias 5='cd +5'
-alias 6='cd +6'
-alias 7='cd +7'
-alias 8='cd +8'
-alias 9='cd +9'
 alias slrn='slrn -n'
 alias man='LC_ALL=C LANG=C man'
 alias f=finger
-alias la='ll -a'
 alias offlineimap-tty='offlineimap -u TTY.TTYUI'
 alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
@@ -116,13 +101,14 @@ alias cp='cp -i'
 alias du='du -h'
 alias df='df -h'
 alias xc='exit'
-alias grep='grep -n'
-alias errorlog='watch -n5 "tail -55 /var/log/apache2/error.log"'
+#alias grep='grep -n'
+alias errorlog='watch -n5 "tail -65 /var/log/apache2/error.log"'
 alias icanhas='sudo apt-get install'
 alias update='sudo apt-get update'
 alias upgrade='sudo apt-get upgrade'
 alias remove='sudo apt-get remove'
 alias search='apt-cache search'
+alias mysli='mysql -u root -p"PASSHERE"'
 alias apt='sudo apt-get'
 alias vi='vim'
 alias greps='grep -A5 -B5'
@@ -137,9 +123,27 @@ alias irs='ssh -t xob screen -rd'
 alias tyokalenteri='google calendar list'
 alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
+
+# directory management
+#alias l='ls -lh --time-style=long-iso'
+alias ls='ls --color=auto'
+alias l='ll'
+alias lsu='ls -lAhtr'
+alias la='ll -a'
+alias lsd='ls -l | grep "^d"'
+alias d='dirs -v | head -9 | tail -8'
+alias 1='cd +1'
+alias 2='cd +2'
+alias 2='cd +2'
+alias 3='cd +3'
+alias 4='cd +4'
+alias 5='cd +5'
+alias 6='cd +6'
+alias 7='cd +7'
+alias 8='cd +8'
+alias 9='cd +9'
 alias tyo_umount='fusermount -u $HOME/Roinaa/tyoasiat && rmdir $HOME/Roinaa/tyoasiat'
 alias tyo_mount='mkdir $HOME/Roinaa/tyoasiat && encfs $HOME/Roinaa/.encrypted $HOME/Roinaa/tyoasiat || rmdir $HOME/Roinaa/tyoasiat'
-alias siilo_umount='fusermount -u /media/siilo'
 
 # typing errors
 alias sl='ls'
@@ -180,14 +184,6 @@ alias glogi='git shortlog -s -n'
 whatthecommit() {
     curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
 }
-www() {
-    if [ -z $1 ]; then 
-        cd /var/www
-    else
-        # zormal o/
-        cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
-    fi
-}
 
 # drush
 alias dst='drush status -show-password'
@@ -212,26 +208,11 @@ alias doffline='drush vset maintenance_mode 1 --yes'
 alias donline='drush vset maintenance_mode 0 --yes'
 function dupwd() { PW=`pwgen -Bs 10 1`; drush upwd --password="${PW}" admin && echo "New password for admin: ${PW}" }
 
-# alias	=clear
-
-#chpwd() {
-#     [[ -t 1 ]] || return
-#     case $TERM in
-#     sun-cmd) print -Pn "\e]l%~\e\\"
-#     ;;
-#    *xterm*|screen|rxvt|(dt|k|E)term) print -Pn "\e]2;%~\a"
-#    ;;
-#    esac
-#}
-
-#chpwd
-
 autoload -U compinit
 compinit
-#bindkey "^?" backward-delete-char
-#bindkey '^[OH' beginning-of-line
+
+# keybinds
 bindkey '[1~' beginning-of-line
-#bindkey '^[OF' end-of-line
 bindkey '[4~' end-of-line
 bindkey '[H' beginning-of-line
 bindkey '[F' end-of-line
@@ -240,6 +221,7 @@ bindkey '^[[6~' down-line-or-history
 bindkey "^r" history-incremental-search-backward
 bindkey ' ' magic-space    # also do history expansion on space
 bindkey '^I' complete-word # complete on tab, leave expansion to _expand
+
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
 
@@ -290,7 +272,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # 1. All /etc/hosts hostnames are in autocomplete
 # 2. If you have a comment in /etc/hosts like #%foobar.domain,
 #    then foobar.domain will show up in autocomplete!
-zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
+zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v \.local | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
     '*?.old' '*?.pro'
@@ -311,7 +293,7 @@ zstyle ':completion:*:scp:*' tag-order \
    files users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
 zstyle ':completion:*:scp:*' group-order \
    files all-files users hosts-domain hosts-host hosts-ipaddr
-zstyle ':completion:*:ssh:*' tag-order \
+# zstyle ':completion:*:ssh:*' tag-order \
    users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
 zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
@@ -383,38 +365,6 @@ function precmd {
         vcs_info 'prompt'          
 }
 
-function lprompt {
-    local brackets=$1
-    local color1=$2  
-    local color2=$3  
-                     
-    local bracket_open="${color1}${brackets[1]}${PR_RESET}"
-    local bracket_close="${color1}${brackets[2]}"          
-                                                             
-    local git='$vcs_info_msg_0_'                           
-    local cwd="${color2}%B%1~%b"
-
-    PROMPT="${PR_RESET}${bracket_open}${git}${cwd}${bracket_close}%# ${PR_RESET}"
-}                                                                                        
-
-function rprompt {
-    local brackets=$1
-    local color1=$2  
-    local color2=$3  
-                     
-    local bracket_open="${color1}${brackets[1]}${PR_RESET}"
-    local bracket_close="${color1}${brackets[2]}${PR_RESET}"
-    local colon="${color1}:"                                
-    local at="${color1}@${PR_RESET}"                        
-                                                            
-    local user_host="${color2}%n${at}${color2}%m"                    
-    local vcs_cwd='${${vcs_info_msg_1_%%.}/$HOME/~}'        
-    local cwd="${color2}%B%20<..<${vcs_cwd}%<<%b"
-    local inner="${user_host}${colon}${cwd}"
-
-    RPROMPT="${PR_RESET}${bracket_open}${inner}${bracket_close}${PR_RESET}"
-}
-
 function prompti {
     # PS1="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR%(!.#.$) "
     local brackets=$1
@@ -432,8 +382,15 @@ function prompti {
 
 }
 
-#lprompt '[]' $BR_BRIGHT_BLACK $PR_WHITE
-#rprompt '()' $BR_BRIGHT_BLACK $PR_WHITE
+function www {
+  if [ -z $1 ]; then 
+    cd /var/www
+  else
+    # zormal o/
+    cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
+  fi
+}
+
 prompti '[]' $BR_BRIGHT_BLACK $PR_WHITE
 
 zle-keymap-select() {
@@ -487,9 +444,13 @@ alias gl='git pull'
 diffcolor(){ diff -U3 $1 $2 |sed -e 's/^+/\x1b\[32m+/;s/^-/\x1b[31m-/;s/$/\x1b[0m/'; }
 # wgetar(){ wget "$@"; foo=`echo "$@" | sed 's:.*/::'`; tar xzvf $foo; }
 
+# convert png to ico file, needs imagemagick
 function png2ico() { convert $1 -resize 16x16 -colors 256 $2 ;}
+
+# create directory and access it
 mcd(){mkdir -p "$1" && cd "$1"}
 
+# kapsi siilo mount thingies
 function siilo() {
   if mountpoint -q "/media/siilo" ; then
     echo "siilo was mounted"
@@ -499,7 +460,9 @@ function siilo() {
     sshfs host:path/siilo /media/siilo && chdir /media/siilo
   fi
 }
+alias siilo_umount='fusermount -u /media/siilo'
 
+# run $2 $1 times
 function manytimes {
   n=0
   times=$1
@@ -509,8 +472,6 @@ function manytimes {
     n=$((n+1))
   done
 }
-
-#. /home/niko/code/powerline/powerline/bindings/zsh/powerline.zsh
 
 function xrdbload() {
   xrdb -load ~/.Xdefaults && xrdb -load ~/.Xresources
