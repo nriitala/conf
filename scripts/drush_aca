@@ -1,11 +1,5 @@
 #!/bin/sh
-if which aberdeen >/dev/null; then
-  aberdeen drush-aliases > /tmp/aberdeen.aliases.drushrc.php &&
-  if which /usr/bin/vim >/dev/null; then
-    /usr/bin/vim -d /tmp/aberdeen.aliases.drushrc.php $HOME/.drush/aberdeen.aliases.drushrc.php
-  else
-    echo '$ vim is not installed'
-  fi
-else
-  echo '$ aberdeen is not in $PATH'
-fi
+command -v aberdeen >/dev/null 2>&1 || { echo '$ aberdeen is not in $PATH. Aborting.' >&2; exit 1; }
+command -v /usr/bin/vim >/dev/null 2>&1 || { echo '$ vim is not installed. Aborting.' >&2; exit 1; }
+aberdeen drush-aliases > /tmp/aberdeen.aliases.drushrc.php &&
+/usr/bin/vim -d /tmp/aberdeen.aliases.drushrc.php $HOME/.drush/aberdeen.aliases.drushrc.php
