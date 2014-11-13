@@ -181,8 +181,12 @@ alias gfiles='git diff-tree --no-commit-id --name-only -r'
 alias glog='git shortlog'
 alias glogi='git shortlog -s -n'
 
+function kapirauno() {
+  (cd $(git rev-parse --show-cdup)/capistrano;cap development deploy)
+}
+
 whatthecommit() {
-    curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
+  curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
 }
 
 # drush
