@@ -177,8 +177,8 @@ nnoremap <silent> <C-D> :DiffSaved<CR>
 "vnoremap > >gv
 
 " Move lines up and down 
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
+"nnoremap <S-j> :m .+1<CR>==
+"nnoremap <S-k> :m .-2<CR>==
 "noremap <S-k> :m .-2<CR>==gi<ESC>
 "noremap <S-j> :m .+1<CR>==gi<ESC>
 " " " "vnoremap <S-j> :m '>+1<CR>gv=gv
@@ -231,6 +231,11 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_match_window_reversed = 0
 
+" Some Drupal coding standard stuff
+let g:syntastic_phpcs_conf=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme"
+let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_php_phpcs_args=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme" 
+
 " Double slash -> Case insensitive search
 map // /\c
 map ?? ?\c
@@ -242,29 +247,34 @@ map ?? ?\c
 "set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+"set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#rc()
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
+"Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
 " My Bundles here:
 "
 " original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
-Bundle 'flazz/vim-colorschemes'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'takac/vim-commandcaps'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'flazz/vim-colorschemes'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'takac/vim-commandcaps'
+Plugin 'scrooloose/syntastic'
 
-filetype plugin indent on     " required!
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required!
 
 " }}}
 
