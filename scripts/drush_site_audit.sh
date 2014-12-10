@@ -6,4 +6,4 @@ then
     echo "https://www.drupal.org/project/site_audit"
     exit 0
 fi
-drush ac --html --detail > /tmp/site_audit.html && firefox /tmp/site_audit.html > /dev/null 2>&1
+drush ac --html --detail > /tmp/site_audit.html && drush abp --detail >> /tmp/site_audit.html && firefox /tmp/site_audit.html > /dev/null 2>&1
