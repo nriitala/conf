@@ -179,7 +179,7 @@ alias gf='git diff --name-only HEAD~1 master'
 alias gcw='git commit -a -m "$(whatthecommit)"'
 alias gfiles='git diff-tree --no-commit-id --name-only -r'
 alias glog='git shortlog'
-alias glogi='git shortlog -s -n'
+alias glogi='git shortlog -s -n --no-merges'
 
 function kapirauno() {
   (cd $(git rev-parse --show-cdup)/capistrano;cap development deploy)
