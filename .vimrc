@@ -65,8 +65,8 @@ set autoindent
 set smartindent
 
 " reselect visual block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
+"vnoremap < <gv
+"vnoremap > >gv
 
 " show line numbers by default
 set number
@@ -134,6 +134,7 @@ set noshowmode
 map t :tabnew 
 nnoremap <C-f> :FufFile<CR>
 nnoremap <C-d> :DiffChangesDiffToggle<CR>
+nnoremap <C-s> :SyntasticCheck<CR>
 
 " write with sudo ":w!!"
 cnoremap w!! w !sudo tee % >/dev/null
@@ -271,6 +272,7 @@ Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'takac/vim-commandcaps'
 Plugin 'scrooloose/syntastic'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
