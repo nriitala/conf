@@ -10,8 +10,9 @@
 
 au BufRead,BufNewFile *.phps		set filetype=php
 au BufRead,BufNewFile *.phtml		set filetype=php
-au BufRead,BufNewFile *.module		set filetype=php
+au BufRead,BufNewFile *.module	set filetype=php
 au BufRead,BufNewFile *.inc 		set filetype=php
+au BufRead,BufNewFile *.install	set filetype=php
 "au BufRead,BufNewFile *.css 		set filetype=php
 
 au BufRead,BufNewFile *.txt         setlocal ft=txt 
