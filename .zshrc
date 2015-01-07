@@ -170,9 +170,7 @@ alias gc='git commit -v'
 alias gcl='git clone'
 alias gca='git commit -v -a'
 alias git-root='cd $(git rev-parse --show-cdup)'
-#alias gll='git log --graph --pretty=oneline --abbrev-commit'
-#alias gll="git log --graph --pretty=format:'%h %an: %s'"
-alias gll="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gll="git log --graph --date=short --pretty=format:'%Cred%h%Creset -%C(yellow)%Creset %s %Cgreen(%cd, %C(yellow)%cr%Cgreen) %C(bold blue)<%an>%Creset' --abbrev-commit"
 # check out what have i done today
 alias glll="git log --graph --pretty=format:'%h (%ad) %an: %s' --date=short | grep `date +%Y-%m-%d` | cut -d ':' -f 3- | paste -s -d ','"
 alias gf='git diff --name-only HEAD~1 master'
@@ -180,6 +178,7 @@ alias gcw='git commit -a -m "$(whatthecommit)"'
 alias gfiles='git diff-tree --no-commit-id --name-only -r'
 alias glog='git shortlog'
 alias glogi='git shortlog -s -n --no-merges'
+alias master='git checkout master'
 
 function kapirauno() {
   (cd $(git rev-parse --show-cdup)/capistrano;cap development deploy)
