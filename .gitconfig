@@ -26,3 +26,6 @@
   amend = commit --amend -C HEAD
   standup = !clear && git log --since '1 day ago' --no-merges --pretty=format':%C(yellow)%h %aN%n %B%n' --author $(git config --global --get user.email)
   mergetest = "!f(){ git merge --no-commit --no-ff \"$1\"; git merge --abort; echo \"Merge aborted\"; };f "
+  whathaveidone = !git shortlog --author="$(git config --get user.name)" --after=`date -dlast-monday +%Y-%m-%d`
+[log]
+  date = iso
