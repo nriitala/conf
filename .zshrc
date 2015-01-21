@@ -123,6 +123,7 @@ alias irs='ssh -t xob screen -rd'
 alias tyokalenteri='google calendar list'
 alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
+alias myip='echo "Public ip address:" && curl http://wtfismyip.com/text'
 
 # directory management
 #alias l='ls -lh --time-style=long-iso'
