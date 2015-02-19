@@ -274,6 +274,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'takac/vim-commandcaps'
 Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'stephpy/vim-php-cs-fixer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
