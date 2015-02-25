@@ -29,8 +29,9 @@ bindsym $mod+Q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 #bindsym $mod+d exec i3-dmenu-desktop
-bindsym Mod1+space exec i3-dmenu-desktop --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 15 -fn sq-12 -i"
-bindsym $mod+space exec ~/.i3/quickswitch.py --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 15 -fn sq-12 -i"
+#bindsym Ctrl+space exec j4-dmenu-desktop --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 25 -fn sq-12 -i"
+bindsym Ctrl+space exec i3-dmenu-desktop --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 25 -fn sq-12 -i"
+bindsym $mod+space exec ~/.i3/quickswitch.py --dmenu="dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p ' ~/  ' -l 25 -fn sq-12 -i"
 
 # change focus
 #bindsym $mod+h focus left
@@ -214,16 +215,32 @@ for_window [title="Write: Re:*"] floating enable;
 for_window [title="Write: Fwd:*"] floating enable;
 for_window [title="Calculator"] floating enable;
 for_window [title="File Operation*"] floating enable;
+for_window [title="Spotify*"] border none;
+#for_window [class="^xfce4-terminal$" instance="scratchpad"] border 1pixel; move scratchpad
 
 # assing default workspaces to stuff
 assign [title="VLC*"] 1
+assign [title="Spotify*"] 4 music
+assign [title="Transmission"] 7 torrent
+
+# test these
+assign [title="Chromium"] 1
+assign [title="Skype"] 2 irc
+assign [title="Mozilla Firefox"] 1
+assign [title="Mozilla Thunderbird"] 3 mail
+assign [title="Aurora"] 1
 
 # bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
 bindsym $mod+c exec xsel -o | dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p Calculate: | xargs echo | bc 2>&1 | dmenu -nb '#111111' -nf '#f8f8f2' -sb '#00cc00' -sf '#111111' -p Answer: | xsel -i
 
 # take screenshot
-bindsym Print exec /home/niko/scripts/screen.sh root
+bindsym Shift+Print exec /home/niko/scripts/screen.sh root
 bindsym Control+Print exec /home/niko/scripts/screen.sh active
+bindsym Shift+Control+Print exec /home/niko/scripts/screen2.sh
 #bindsym Print exec scrot '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'cp $f ~/temp/screenshots/ && scp $f dev:pub/screenshots/'
 #bindsym Mod1+Print exec i3-sensible-terminal -e scrot -s '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'cp $f ~/images/screenshots/ && mv $f /media/shared/dropbox/Dropbox/public/' && sleep 60
 #bindsym $mod+Print exec scrot -u '%Y-%m-%d_%H-%M-%S_$wx$h.png' -e 'cp $f ~/images/screenshots/ && mv $f /media/shared/dropbox/Dropbox/public/'
+
+# autostart
+exec gnome-terminal
+#exec thunderbird
