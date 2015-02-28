@@ -92,7 +92,7 @@ git_rebase_alias_continue="grbc"
 git_rebase_alias_abort="grba"
 git_merge_alias="gm"
 git_cherry_pick_alias="gcp"
-git_log_alias="gll"
+#git_log_alias="gll"
 git_log_stat_alias="gls"
 git_log_graph_alias="glg"
 git_show_alias="gsh"
@@ -115,3 +115,6 @@ git_commit_all_with_ci_skip_keys="\C-xv"  # CTRL+x, v    (Appends [ci skip] to c
 shell_command_wrapping_enabled="true"
 # Here you can tweak the list of wrapped commands.
 scmb_wrapped_shell_commands="vim emacs gedit cat rm cp mv ln cd"
+
+# Custom stuff
+git_last_branches="glb"

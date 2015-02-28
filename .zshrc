@@ -480,3 +480,25 @@ function manytimes {
 function xrdbload() {
   xrdb -load ~/.Xdefaults && xrdb -load ~/.Xresources
 }
+
+function _scmb_git_last_branches {
+  fail_if_not_git_repo || return 1
+  # Use ruby to inject numbers into ls output
+  ruby -e "$( cat <<EOF
+    output = %x($_git_cmd for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' $@)
+    line_count = output.lines.to_a.size
+    output.lines.each_with_index do |line, i|
+      spaces = (line_count > 9 && i < 9 ? " " : " ")
+      puts line.sub(/^([ *]{0})/, "\\\1\033[2;37m[\033[0m#{i+1}\033[2;37m]\033[0m" << spaces)
+    end
+EOF
+)"
+  # Set numbered file shortcut in variable
+  local e=1
+  for branch in $($_git_cmd for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'); do
+    export $git_env_char$e="$branch"
+    if [ "${scmbDebug:-}" = "true" ]; then echo "Set \$$git_env_char$e => $file"; fi
+    let e++
+  done
+}
+__git_alias "$git_last_branches" "_scmb_git_last_branches"
