@@ -1,0 +1,6 @@
+keycode 78 = XF86AudioLowerVolume
+keycode 127 = XF86AudioRaiseVolume
+setxkbmap -option caps:none
+clear Lock
+# set caps lock to escape
+# keycode 0x42 = Escape
