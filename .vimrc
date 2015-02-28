@@ -137,6 +137,23 @@ nnoremap <C-f> :FufFile<CR>
 nnoremap <C-d> :DiffChangesDiffToggle<CR>
 nnoremap <C-s> :SyntasticCheck<CR>
 
+" drush mappings
+nnoremap <leader>dcca :!drush cc all<CR>
+nnoremap <leader>dcm :!drush cc menu<CR>
+nnoremap <leader>dct :!drush cc theme<CR>
+nnoremap <leader>dcc :!drush cc css+js<CR>
+nnoremap <leader>dul :!drush uli<CR>
+
+" git mappings
+nnoremap <Leader>gd :Gdiff<Enter>
+nnoremap <Leader>gD :GitDiff --cached<Enter>
+nnoremap <Leader>gs :Gstatus<Enter>
+nnoremap <Leader>gl :GitLog<Enter>
+nnoremap <Leader>ga :GitAdd<Enter>
+nnoremap <Leader>gA :GitAdd <cfile><Enter>
+nnoremap <Leader>gc :GitCommit<Enter>
+nnoremap <Leader>gp :GitPullRebase<Enter>
+
 " write with sudo ":w!!"
 cnoremap w!! w !sudo tee % >/dev/null
 
@@ -242,6 +259,9 @@ let g:syntastic_php_phpcs_args=" --standard=$HOME/.drush/coder/coder_sniffer/Dru
 map // /\c
 map ?? ?\c
 
+" Map ctrl-e for Extradite plugin
+map <C-e> :Extradite!<CR>
+
 " }}}
 
 " {{{ Vundle
@@ -276,6 +296,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'int3/vim-extradite'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
