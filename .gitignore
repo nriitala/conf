@@ -4,6 +4,8 @@ sites/*/settings*.php
 # Ignore paths that contain user-generated content.
 sites/*/files
 sites/*/private
+sites/all/themes/*/nohup.out
+sites/all/themes/*/css/*.map 
 
 # Also ignore the files directory from sites upgraded from Drupal 5.
 files
@@ -22,3 +24,12 @@ Thumbs.db
 .htaccess
 *.log
 *.sql
+
+# Ignore generated css
+sites/all/themes/*/css/style.css
+ 
+# Ignore sass-cache files.
+*.sass-cache* 
+
+# Subversion
+.svn*
