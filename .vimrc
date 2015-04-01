@@ -228,6 +228,11 @@ let g:ctrlp_match_window_reversed = 0
 let g:syntastic_phpcs_conf=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme"
 let g:syntastic_php_checkers = ['php', 'phpcs']
 let g:syntastic_php_phpcs_args=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme" 
+let g:syntastic_sass_checkers = ['sass']
+
+" Other Syntastic settings
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_warning_symbol = "⚠"
 
 " Double slash -> Case insensitive search
 map // /\c
