@@ -13,6 +13,10 @@ au BufRead,BufNewFile *.phtml		set filetype=php
 au BufRead,BufNewFile *.module	set filetype=php
 au BufRead,BufNewFile *.inc 		set filetype=php
 au BufRead,BufNewFile *.install	set filetype=php
+au BufRead,BufNewFile *.test	  set filetype=php
+au BufRead,BufNewFile *.profile	set filetype=php
+au BufRead,BufNewFile *.theme	  set filetype=php
+au BufRead,BufNewFile *.sass	  set filetype=sass
 "au BufRead,BufNewFile *.css 		set filetype=php
 
 au BufRead,BufNewFile *.txt         setlocal ft=txt 
@@ -157,36 +161,6 @@ nnoremap <Leader>gp :GitPullRebase<Enter>
 " write with sudo ":w!!"
 cnoremap w!! w !sudo tee % >/dev/null
 
-"if &term =~ "xterm"
-" if has("terminfo")
-"   set t_Co=8
-"   set t_Sf=<Esc>[3%p1%dm
-"   set t_Sb=<Esc>[4%p1%dm
-" else
-"   set t_Co=8
-"   set t_Sf=<Esc>[3%dm
-"   set t_Sb=<Esc>[4%dm
-" endif
-"endif
-
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
-
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-
 nnoremap <silent> <F8> :TlistToggle<CR>
 nnoremap <silent> <F9> :NERDTree<CR>
 nnoremap <silent> <C-D> :DiffSaved<CR>
@@ -262,7 +236,42 @@ map ?? ?\c
 " Map ctrl-e for Extradite plugin
 map <C-e> :Extradite!<CR>
 
-" }}}
+" }}} 
+
+" {{{ Functions
+
+function! TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+
+autocmd FileWritePre    * :call TrimWhiteSpace()
+autocmd FileAppendPre   * :call TrimWhiteSpace()
+autocmd FilterWritePre  * :call TrimWhiteSpace()
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
+function RemoveHtml()
+  %s#<[^>]\+>##g
+endfunction
+
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
+
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+
+" }}}  
 
 " {{{ Vundle
 
