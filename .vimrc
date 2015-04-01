@@ -1,6 +1,6 @@
 " .vimrc by Niko Riitala <nri@iki.fi>. Twitter: @nikoriitala
 " No copyright, feel free to use this, as you like.
-" 
+"
 " General VIM settings file. Optimized for OS X term and for PHP coding.
 " Most of this file is copied from Tobias Schlitt's version of .vimrc
 
@@ -19,13 +19,13 @@ au BufRead,BufNewFile *.theme	  set filetype=php
 au BufRead,BufNewFile *.sass	  set filetype=sass
 "au BufRead,BufNewFile *.css 		set filetype=php
 
-au BufRead,BufNewFile *.txt         setlocal ft=txt 
+au BufRead,BufNewFile *.txt         setlocal ft=txt
 au! BufRead,BufNewFile *.mkd        setfiletype mkd
-au BufRead,BufNewFile *.todo        setfiletype todo 
+au BufRead,BufNewFile *.todo        setfiletype todo
 
 " }}}
 
-" {{{  Vim Settings  
+" {{{  Vim Settings
 
 " for manually compiled Vim 7.3
 "let &runtimepath.=',/home/niko/vim/runtime'
@@ -40,7 +40,7 @@ syntax on
 
 " highlight current line in insert mode.
 "autocmd InsertLeave * se nocul
-"autocmd InsertEnter * se cul 
+"autocmd InsertEnter * se cul
 
 " switch paste mode off whenever insert mode is left
 " autocmd InsertLeave <buffer> se nopaste
@@ -77,7 +77,7 @@ set smartindent
 set number
 
 " enable folding by fold markers
-set foldmethod=marker 
+set foldmethod=marker
 
 " autoclose folds, when moving out of them
 set foldclose=all
@@ -97,7 +97,7 @@ set backspace=start,eol,indent
 " toggle paste
 set pastetoggle=§
 
-set wrap 
+set wrap
 
 " backup settings
 set backup
@@ -131,12 +131,12 @@ command! -bang Q quit<bang>
 
 set noshowmode
 
-" }}} 
+" }}}
 
 " {{{  Misc settings, mappings, term settings
 
 " some mappings
-map t :tabnew 
+map t :tabnew
 nnoremap <C-f> :FufFile<CR>
 nnoremap <C-d> :DiffChangesDiffToggle<CR>
 nnoremap <C-s> :SyntasticCheck<CR>
@@ -169,7 +169,7 @@ nnoremap <silent> <C-D> :DiffSaved<CR>
 "vnoremap < <gv
 "vnoremap > >gv
 
-" Move lines up and down 
+" Move lines up and down
 "nnoremap <S-j> :m .+1<CR>==
 "nnoremap <S-k> :m .-2<CR>==
 "noremap <S-k> :m .-2<CR>==gi<ESC>
@@ -213,7 +213,7 @@ command CD :cd %:p:h
 command Lines :!cat %|sed '/^\s*$/d'|wc -l
 
 " Map leader key for nercommenter
-let mapleader = "," 
+let mapleader = ","
 
 " CtrlP settings
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
@@ -227,7 +227,7 @@ let g:ctrlp_match_window_reversed = 0
 " Some Drupal coding standard stuff
 let g:syntastic_phpcs_conf=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme"
 let g:syntastic_php_checkers = ['php', 'phpcs']
-let g:syntastic_php_phpcs_args=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme" 
+let g:syntastic_php_phpcs_args=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme"
 let g:syntastic_sass_checkers = ['sass']
 
 " Other Syntastic settings
@@ -241,7 +241,7 @@ map ?? ?\c
 " Map ctrl-e for Extradite plugin
 map <C-e> :Extradite!<CR>
 
-" }}} 
+" }}}
 
 " {{{ Functions
 
@@ -276,7 +276,7 @@ function! Tab_Or_Complete()
 endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 
-" }}}  
+" }}}
 
 " {{{ Vundle
 
