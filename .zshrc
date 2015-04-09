@@ -504,3 +504,21 @@ EOF
   done
 }
 __git_alias "$git_last_branches" "_scmb_git_last_branches"
+
+# {{{ Antigen external plugins
+source $HOME/antigen/antigen.zsh
+
+# Custom bundles
+antigen bundle robbyrussell/oh-my-zsh plugins/jira
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+#antigen bundle git
+#antigen bundle heroku
+#antigen bundle pip
+#antigen bundle lein
+#antigen bundle command-not-found
+
+# Tell antigen that you're done.
+antigen apply
+
+# }}}
