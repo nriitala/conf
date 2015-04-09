@@ -26,13 +26,13 @@ setopt HASH_DIRS		# turns on hashing
 #
 setopt MENUCOMPLETE
 setopt ALL_EXPORT
-# fix keys on os x 
+# fix keys on os x
 bindkey "[3~" delete-char
 
 # Set/unset  shell options
 setopt   notify globdots correct pushdtohome cdablevars autolist
 setopt   correctall autocd recexact longlistjobs
-setopt   autoresume histignoredups pushdsilent 
+setopt   autoresume histignoredups pushdsilent
 setopt   autopushd extendedglob rcquotes mailwarning
 unsetopt bgnice autoparamslash
 
@@ -244,7 +244,7 @@ zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 # allow one error for every three characters typed in approximate completer
 zstyle -e ':completion:*:approximate:*' max-errors \
     'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
-    
+
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
@@ -276,7 +276,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # 1. All /etc/hosts hostnames are in autocomplete
 # 2. If you have a comment in /etc/hosts like #%foobar.domain,
 #    then foobar.domain will show up in autocomplete!
-zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v \.local | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
+zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v \.local | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}')
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
     '*?.old' '*?.pro'
@@ -305,8 +305,8 @@ zstyle '*' single-ignored show
 
 if [[ ${TERM} == "screen-bce" || ${TERM} == "screen" ]]; then
   precmd () { print -Pn "\033k\033\134\033k%1d/\033\134" }
-  preexec () { 
-      #print -Pn "\033k\033\134\033k%m[$1]\033\134" 
+  preexec () {
+      #print -Pn "\033k\033\134\033k%m[$1]\033\134"
       local CMD=${1[(wr)^(<*|*=*|sudo|exec|-*)]}
       echo -n "\ek$CMD\e\\"
       }
@@ -341,45 +341,45 @@ setopt promptsubst
 # git integration
 
 setopt prompt_subst
-autoload colors    
-colors             
+autoload colors
+colors
 
 autoload -Uz vcs_info
 # set some colors
 for COLOR in RED GREEN YELLOW WHITE BLACK CYAN; do
-    eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'         
+    eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
     eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
-done                                                 
-PR_RESET="%{${reset_color}%}"; 
+done
+PR_RESET="%{${reset_color}%}";
 
 FMT_BRANCH="${PR_GREEN}%b%u%c${PR_RESET}" # e.g. master¹²
 FMT_ACTION="(${PR_CYAN}%a${PR_RESET}%)"   # e.g. (rebase-i)
 FMT_PATH="%R${PR_YELLOW}/%S"              # e.g. ~/repo/subdir
 
 # check-for-changes can be really slow.
-# you should disable it, if you work with large repositories    
+# you should disable it, if you work with large repositories
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
 zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
 zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
 zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}//" "${FMT_PATH}"
 zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"              "${FMT_PATH}"
-zstyle ':vcs_info:*:prompt:*' nvcsformats   ""                             "%~"         
+zstyle ':vcs_info:*:prompt:*' nvcsformats   ""                             "%~"
 
-function precmd {       
-        vcs_info 'prompt'          
+function precmd {
+        vcs_info 'prompt'
 }
 
 function prompti {
     # PS1="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR%(!.#.$) "
     local brackets=$1
-    local color1=$2  
-    local color2=$3  
-    local at="${color1}@${PR_RESET}"                        
-    
+    local color1=$2
+    local color2=$3
+    local at="${color1}@${PR_RESET}"
+
     local bracket_open="${color1}${brackets[1]}${PR_RESET}"
     local bracket_close="${color1}${brackets[2]}${PR_RESET}"
 
-    local git='$vcs_info_msg_0_'                           
+    local git='$vcs_info_msg_0_'
     local cwd="${color2}%B%1~%b"
 
     PROMPT="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR${bracket_open}${git}${bracket_close} %(!.#.$) "
@@ -387,7 +387,7 @@ function prompti {
 }
 
 function www {
-  if [ -z $1 ]; then 
+  if [ -z $1 ]; then
     cd /var/www
   else
     # zormal o/
