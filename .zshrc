@@ -26,7 +26,6 @@ setopt HASH_DIRS		# turns on hashing
 #
 setopt MENUCOMPLETE
 setopt ALL_EXPORT
-# fix keys on os x
 bindkey "[3~" delete-char
 
 # Set/unset  shell options
@@ -42,11 +41,11 @@ zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 #zmodload -ap zsh/mapfile mapfile
 
-PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin/:~/bin/:$PATH:/home/niko/scripts"
+PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:~/bin:$PATH:$HOME/scripts:$HOME/.local/bin:$HOME/.composer/vendor/bin"
 TZ="Europe/Helsinki"
 HISTFILE=$HOME/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=5000
+SAVEHIST=5000
 HOSTNAME="`hostname`"
 PAGER='less'
 EDITOR='vim'
@@ -61,19 +60,13 @@ EDITOR='vim'
     done
     PR_NO_COLOR="%{$terminfo[sgr0]%}"
 PS1="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR%(!.#.$) "
-#RPS1="$PR_YELLOW(%D{%d.%m %H:%M:%S})$PR_NO_COLOR"
 #LANGUAGE=
 LC_ALL='fi_fi.UTF-8'
 LANG='fi_FI.UTF-8'
 LC_CTYPE=C
 
-if [ $SSH_TTY ]; then
-  MUTT_EDITOR=vim
-else
-  MUTT_EDITOR=emacsclient.emacs-snapshot
-fi
-
 unsetopt ALL_EXPORT
+
 # # --------------------------------------------------------------------
 # # aliases
 # # --------------------------------------------------------------------
@@ -88,7 +81,7 @@ alias scpresume='rsync --partial --progress'
 alias un='tar -zxf'
 alias ipscan='nmap -sP 192.168.1.1-255'
 alias salakala='pwgen -Bs 10 1'
-alias salakala_serious_business='pwgen -ys 20 1'
+alias salakala_serious_business='pwgen -ys 30 1'
 alias tetris='emacs -q --no-splash -f tetris'
 alias links2='links2 -g'
 alias slrn='slrn -n'
@@ -101,7 +94,6 @@ alias cp='cp -i'
 alias du='du -h'
 alias df='df -h'
 alias xc='exit'
-#alias grep='grep -n'
 alias errorlog='watch -n5 "tail -65 /var/log/apache2/error.log"'
 alias icanhas='sudo apt-get install'
 alias update='sudo apt-get update'
@@ -124,9 +116,9 @@ alias tyokalenteri='google calendar list'
 alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
 alias myip='echo "Public ip address:" && curl http://wtfismyip.com/text'
+alias cal='ncal -MC'
 
 # directory management
-#alias l='ls -lh --time-style=long-iso'
 alias ls='ls --color=auto'
 alias l='ll'
 alias lsu='ls -lAhtr'
@@ -181,14 +173,6 @@ alias glog='git shortlog'
 alias glogi='git shortlog -s -n --no-merges'
 alias master='git checkout master'
 
-function kapirauno() {
-  (cd $(git rev-parse --show-cdup)/capistrano;cap development deploy)
-}
-
-whatthecommit() {
-  curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
-}
-
 # drush
 alias dst='drush status -show-password'
 alias ddl='drush dl'
@@ -205,6 +189,8 @@ alias drdb='drush sql-dump --ordered-dump --result-file=dump.sql'
 alias drun='drush pm-uninstall'
 alias drfe='drush features'
 alias dr='drush'
+alias dr7='drush7'
+alias drush7='/home/niko/.composer/vendor/bin/drush'
 alias ddiscache='drush vset cache 0 && drush vset page_compression 0 && drush vset preprocess_js 0 && drush vset preprocess_css 0'
 alias dencache='drush vset cache 1 && drush vset page_compression 1 && drush vset preprocess_js 1 && drush vset preprocess_css 1'
 alias dsdump='drush sql-dump --result-file=dump.sql'
@@ -271,9 +257,6 @@ zstyle ':completion:*:processes' command 'ps -au$USER'
 ## add colors to processes for kill completion
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-#zstyle ':completion:*:processes' command 'ps -o pid,s,nice,stime,args'
-#zstyle ':completion:*:urls' local 'www' '/var/www/htdocs' 'public_html'
-#
 #NEW completion:
 # 1. All /etc/hosts hostnames are in autocomplete
 # 2. If you have a comment in /etc/hosts like #%foobar.domain,
@@ -282,25 +265,22 @@ zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts 
 # Filename suffixes to ignore during completion (except after rm command)
 zstyle ':completion:*:*:(^rm):*:*files' ignored-patterns '*?.o' '*?.c~' \
     '*?.old' '*?.pro'
-# the same for old style completion
-#fignore=(.o .c~ .old .pro)
 
 # ignore completion functions (until the _ignored completer)
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:*:*:users' ignored-patterns \
-        adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
-        named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
-        rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs avahi-autoipd\
-        avahi backup messagebus beagleindex debian-tor dhcp dnsmasq fetchmail\
-        firebird gnats haldaemon hplip irc klog list man cupsys postfix\
-        proxy syslog www-data mldonkey sys snort
+  adm apache bin daemon games gdm halt ident junkbust lp mail mailnull \
+  named news nfsnobody nobody nscd ntp operator pcap postgres radvd \
+  rpc rpcuser rpm shutdown squid sshd sync uucp vcsa xfs avahi-autoipd\
+  avahi backup messagebus beagleindex debian-tor dhcp dnsmasq fetchmail\
+  firebird gnats haldaemon hplip irc klog list man cupsys postfix\
+  proxy syslog www-data mldonkey sys snort
+
 # SSH Completion
 zstyle ':completion:*:scp:*' tag-order \
    files users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
 zstyle ':completion:*:scp:*' group-order \
    files all-files users hosts-domain hosts-host hosts-ipaddr
-# zstyle ':completion:*:ssh:*' tag-order \
-   users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
 zstyle ':completion:*:ssh:*' group-order \
    hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
@@ -308,40 +288,18 @@ zstyle '*' single-ignored show
 if [[ ${TERM} == "screen-bce" || ${TERM} == "screen" ]]; then
   precmd () { print -Pn "\033k\033\134\033k%1d/\033\134" }
   preexec () {
-      #print -Pn "\033k\033\134\033k%m[$1]\033\134"
-      local CMD=${1[(wr)^(<*|*=*|sudo|exec|-*)]}
-      echo -n "\ek$CMD\e\\"
-      }
-  #precmd () { print -Pn "\033k\033\134\033k%m[%1d]\033\134" }
-  #preexec () { print -Pn "\033k\033\134\033k%m[$1]\033\134" }
+    local CMD=${1[(wr)^(<*|*=*|sudo|exec|-*)]}
+    echo -n "\ek$CMD\e\\"
+  }
 else
   precmd () { print -Pn "\e]0;%n@%m: %~\a" }
   preexec () { print -Pn "\e]0;%n@%m: $1\a" }
 fi
 
-#setopt extended_glob
-#preexec () {
-#    if [[ "$TERM" == "screen" ]]; then
-#        local CMD=${1[(wr)^(*=*|sudo|-*)]}
-#        echo -ne "\ek$CMD\e\\"
-#    fi
-#}
-
 eval $(dircolors ~/.dir_colors)
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# zgitinit and prompt_wunjo_setup must be somewhere in your $fpath, see README for more.
-
 setopt promptsubst
-
-# Load the prompt theme system
-#autoload -U promptinit
-#promptinit
-
-# Use the wunjo prompt theme
-#prompt wunjo
-# git integration
-
 setopt prompt_subst
 autoload colors
 colors
@@ -368,31 +326,25 @@ zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"              "${FMT_
 zstyle ':vcs_info:*:prompt:*' nvcsformats   ""                             "%~"
 
 function precmd {
-        vcs_info 'prompt'
+  vcs_info 'prompt'
 }
 
 function prompti {
-    # PS1="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR%(!.#.$) "
-    local brackets=$1
-    local color1=$2
-    local color2=$3
-    local at="${color1}@${PR_RESET}"
-
-    local bracket_open="${color1}${brackets[1]}${PR_RESET}"
-    local bracket_close="${color1}${brackets[2]}${PR_RESET}"
-
-    local git='$vcs_info_msg_0_'
-    local cwd="${color2}%B%1~%b"
-
-    PROMPT="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR${bracket_open}${git}${bracket_close} %(!.#.$) "
-
+  local brackets=$1
+  local color1=$2
+  local color2=$3
+  local at="${color1}@${PR_RESET}"
+  local bracket_open="${color1}${brackets[1]}${PR_RESET}"
+  local bracket_close="${color1}${brackets[2]}${PR_RESET}"
+  local git='$vcs_info_msg_0_'
+  local cwd="${color2}%B%1~%b"
+  PROMPT="$PR_GREEN%n$PR_BLUE@$PR_YELLOW%m$PR_GREEN:$PR_BLUE%5c/$PR_NO_COLOR${bracket_open}${git}${bracket_close} %(!.#.$) "
 }
 
 function www {
   if [ -z $1 ]; then
     cd /var/www
   else
-    # zormal o/
     cd $(echo `find /var/www -maxdepth 3 -type d -name $1 -print0 -quit`)
   fi
 }
@@ -447,8 +399,9 @@ umask 002
 [ -s "$HOME/scripts/grep_with_file_shortcuts.zsh" ] && source "$HOME/scripts/grep_with_file_shortcuts.zsh"
 alias gl='git pull'
 
+# {{{ Functions
+
 diffcolor(){ diff -U3 $1 $2 |sed -e 's/^+/\x1b\[32m+/;s/^-/\x1b[31m-/;s/$/\x1b[0m/'; }
-# wgetar(){ wget "$@"; foo=`echo "$@" | sed 's:.*/::'`; tar xzvf $foo; }
 
 # convert png to ico file, needs imagemagick
 function png2ico() { convert $1 -resize 16x16 -colors 256 $2 ;}
@@ -505,6 +458,16 @@ EOF
 }
 __git_alias "$git_last_branches" "_scmb_git_last_branches"
 
+function kapirauno() {
+  (cd $(git rev-parse --show-cdup)capistrano;cap development deploy)
+}
+
+whatthecommit() {
+  curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
+}
+
+# }}}
+
 # {{{ Antigen external plugins
 source $HOME/antigen/antigen.zsh
 
@@ -522,3 +485,5 @@ antigen bundle robbyrussell/oh-my-zsh plugins/jira
 antigen apply
 
 # }}}
+
+setxkbmap -option caps:none
