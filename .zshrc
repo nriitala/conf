@@ -432,8 +432,8 @@ export work="$HOME/Work/"
 export git="$HOME/git/"
 export TERM=xterm-256color
 
-source ~/.git-completion.sh
-source ~/.git-flow-completion.sh
+source ~/zsh/.git-completion.sh
+source ~/zsh/.git-flow-completion.sh
 
 export LC_ALL=en_US.UTF-8
 bindkey "[3~" delete-char
