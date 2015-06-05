@@ -185,7 +185,7 @@ vnoremap <S-Down> :m '>+1<CR>gv=gv
 vnoremap <S-Up> :m '<-2<CR>gv=gv
 
 map <C-l> :vertical wincmd f<CR>
-map <C-p> :CtrlP<CR>
+"map <C-p> :CtrlP<CR>
 map <C-t> :tabnew<CR>
 map <S-Left> :tabp<CR>
 map <S-Right> :tabn<CR>
@@ -311,6 +311,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'int3/vim-extradite'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'jamessan/gnupg.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -327,3 +330,7 @@ set t_Co=256
 set clipboard=unnamedplus
 "colorscheme adrian
 colorscheme tuutti
+
+" Search files with unite.vim
+nnoremap <space>p :Unite -start-insert file_rec/async:!<cr>
+nnoremap <leader>s :Unite -start-insert buffer<cr>
