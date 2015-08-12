@@ -172,6 +172,7 @@ alias gfiles='git diff-tree --no-commit-id --name-only -r'
 alias glog='git shortlog'
 alias glogi='git shortlog -s -n --no-merges'
 alias master='git checkout master'
+alias git-remote-activity='for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r'
 
 # drush
 alias dst='drush status -show-password'
