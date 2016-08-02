@@ -112,7 +112,8 @@ alias vhosts='sudo vi /etc/apache2/sites-enabled/vhosts'
 alias calc='qalc'
 alias devscp='rsync -av --rsh "ssh dev ssh"'
 alias irs='ssh -t xob screen -rd'
-alias tyokalenteri='google calendar list'
+alias tyokalenteri='gcalcli calm'
+alias wadap='gcalcli agenda'
 alias palaverit='google calendar list --date today,tomorrow'
 alias spotify='$HOME/scripts/spotify-control.sh'
 alias myip='echo "Public ip address:" && curl http://wtfismyip.com/text'
@@ -382,7 +383,6 @@ export code="$HOME/code/"
 export temp="$HOME/temp/"
 export roinaa="$HOME/Roinaa/"
 export work="$HOME/Work/"
-export git="$HOME/git/"
 export TERM=xterm-256color
 
 source ~/.zsh/.git-completion.sh
