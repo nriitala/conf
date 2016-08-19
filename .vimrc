@@ -314,6 +314,11 @@ Plugin 'int3/vim-extradite'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'jamessan/gnupg.vim'
+Plugin 'rking/ag.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/MatchTagAlways'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
