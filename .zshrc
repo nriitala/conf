@@ -488,3 +488,34 @@ antigen apply
 # }}}
 
 setxkbmap -option caps:none
+
+# v [pattern] to vim a file under the current directory
+function v() {
+  if [ -n "$1" ]; then
+    vim $(find . -type f -o -name .git -prune | grep -i $1 | head -1)
+  else
+    vim $(find . -type f -o -name .git -prune | peco)
+  fi
+}
+
+# ^r to see history using peco
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+# ag+peco+vim = profit!
+function agvim() {
+  vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
