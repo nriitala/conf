@@ -216,13 +216,13 @@ command Lines :!cat %|sed '/^\s*$/d'|wc -l
 let mapleader = ","
 
 " CtrlP settings
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_match_window_reversed = 0
+"set wildignore+=*/tmp/*,*.so,*.swp,*.zip " MacOSX/Linux
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+  " let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_dotfiles = 0
+"let g:ctrlp_switch_buffer = 0
+"let g:ctrlp_match_window_reversed = 0
 
 " Some Drupal coding standard stuff
 let g:syntastic_phpcs_conf=" --standard=$HOME/.drush/coder/coder_sniffer/Drupal --extensions=php,module,inc,install,test,profile,theme"
@@ -313,7 +313,7 @@ Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'int3/vim-extradite'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'jamessan/gnupg.vim'
+Plugin 'jamessan/vim-gnupg'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
