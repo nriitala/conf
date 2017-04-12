@@ -178,7 +178,7 @@ alias git-remote-activity='for branch in `git branch -r | grep -v HEAD`;do echo 
 # drush
 alias dst='drush status -show-password'
 alias ddl='drush dl'
-function ddlen() { /usr/bin/drush dl "$@" && /usr/bin/drush en "$@" -y ; }
+function ddlen() { drush dl "$@" && drush en "$@" -y ; }
 alias ddls='drush dl --select'
 alias den='drush en -y'
 alias ddis='drush dis -y'
