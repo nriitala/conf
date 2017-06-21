@@ -489,3 +489,14 @@ antigen apply
 # }}}
 
 setxkbmap -option caps:none
+
+# fix ruby rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+
+# Automatically added by Platform.sh CLI installer
+export PATH="/home/niko/.platformsh/bin:$PATH"
+. '/home/niko/.platformsh/shell-config.rc' 2>/dev/null
+
+# Set variable for deploy machine to see who is deploying.
+DEPLOY_USER=nriitala
