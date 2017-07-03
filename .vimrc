@@ -1,7 +1,7 @@
 " .vimrc by Niko Riitala <nri@iki.fi>. Twitter: @nikoriitala
 " No copyright, feel free to use this, as you like.
 "
-" General VIM settings file. Optimized for OS X term and for PHP coding.
+" General VIM settings file. Optimized for Drupal / PHP coding.
 " Most of this file is copied from Tobias Schlitt's version of .vimrc
 
 "cabbr checkjs !js /home/niko/bin/runjslint.js "`cat %`" \| lynx --force-html /dev/fd/5 -dump 5<&0 \| less
