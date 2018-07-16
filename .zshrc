@@ -92,6 +92,7 @@ alias hnb-partecs='hnb $HOME/partecs/partecs-hnb.xml'
 alias rest2html-css='rst2html --embed-stylesheet --stylesheet-path=/usr/share/python-docutils/s5_html/themes/default/print.css'
 alias cp='cp -i'
 alias du='du -h'
+alias ducks='du -cks * | sort -rn | head'
 alias df='df -h'
 alias xc='exit'
 alias errorlog='watch -n5 "tail -65 /var/log/apache2/error.log"'
@@ -466,6 +467,18 @@ function kapirauno() {
 
 whatthecommit() {
   curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
+}
+
+function dcip() {
+  docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
+}
+
+function dcssh() {
+  docker-compose exec "$@" bash
+}
+
+function dclogs() {
+  docker-compose logs "$0"
 }
 
 # }}}
