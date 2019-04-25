@@ -63,8 +63,8 @@ bindsym $mod+section workspace 10
 
 # Toggle between 2 workspaces
 bindsym $mod+Tab workspace back_and_forth
-bindsym F1 exec ~/.i3/i3-toggle.py 
-bindsym $mod+1 exec ~/.i3/i3-toggle.py 
+bindsym F1 exec ~/.i3/i3-toggle.py
+bindsym $mod+1 exec ~/.i3/i3-toggle.py
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -105,27 +105,27 @@ bindsym $mod+less scratchpad show
 
 # switch to workspace
 #bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+2 workspace 2 irc
+bindsym $mod+3 workspace 3 slack
+bindsym $mod+4 workspace 4 mail
+bindsym $mod+5 workspace 5 virtual
+bindsym $mod+6 workspace 6 misc
+bindsym $mod+7 workspace 7 random
+bindsym $mod+8 workspace 8 random
+bindsym $mod+9 workspace 9 random
+bindsym $mod+0 workspace 10 work
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace 1
-bindsym $mod+Shift+quotedbl move container to workspace 2
-bindsym $mod+Shift+numbersign move container to workspace 3
-bindsym $mod+Shift+currency move container to workspace 4
-bindsym $mod+Shift+percent move container to workspace 5
-bindsym $mod+Shift+ampersand move container to workspace 6
-bindsym $mod+Shift+slash move container to workspace 7
-bindsym $mod+Shift+parenleft move container to workspace 8
-bindsym $mod+Shift+parenright move container to workspace 9
-bindsym $mod+Shift+equal move container to workspace 10
+bindsym $mod+Shift+quotedbl move container to workspace 2 irc
+bindsym $mod+Shift+numbersign move container to workspace 3 slack
+bindsym $mod+Shift+currency move container to workspace 4 mail
+bindsym $mod+Shift+percent move container to workspace 5 virtual
+bindsym $mod+Shift+ampersand move container to workspace 6 misc
+bindsym $mod+Shift+slash move container to workspace 7 random
+bindsym $mod+Shift+parenleft move container to workspace 8 random
+bindsym $mod+Shift+parenright move container to workspace 9 random
+bindsym $mod+Shift+equal move container to workspace 10 work
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
@@ -165,12 +165,12 @@ bindsym $mod+r mode "resize"
 bar {
     font xft:Ubuntu Mono Bold 10
     status_command i3status
-    position top 
-    output LVDS1
+    position bottom
+    output LVDS-1
     colors {
         background #000000
         statusline #999999
-         
+
         focused_workspace #ffffff #285577
         active_workspace #ffffff #333333
         inactive_workspace #888888 #222222
@@ -220,14 +220,14 @@ for_window [title="Spotify*"] border none;
 
 # assing default workspaces to stuff
 assign [title="VLC*"] 1
-assign [title="Spotify*"] 4 music
+assign [title="Spotify*"] 4 mail
 assign [title="Transmission"] 7 torrent
 
 # test these
 assign [title="Chromium"] 1
 assign [title="Skype"] 2 irc
 assign [title="Mozilla Firefox"] 1
-assign [title="Mozilla Thunderbird"] 3 mail
+assign [title="Mozilla Thunderbird"] 4 mail
 assign [title="Aurora"] 1
 
 # bindsym $mod+c exec i3-input -F 'rename workspace to %s' -P 'New name: '
