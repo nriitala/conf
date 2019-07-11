@@ -488,6 +488,9 @@ source $HOME/antigen/antigen.zsh
 
 # Custom bundles
 antigen bundle robbyrussell/oh-my-zsh plugins/jira
+#antigen-bundle zsh-users/zsh-history-substring-search
+#bindkey "$terminfo[kcuu1]" history-substring-search-up
+#bindkey "$terminfo[kcud1]" history-substring-search-down
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 #antigen bundle git
