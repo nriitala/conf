@@ -18,10 +18,26 @@ au BufRead,BufNewFile *.profile	set filetype=php
 au BufRead,BufNewFile *.theme	  set filetype=php
 au BufRead,BufNewFile *.sass	  set filetype=sass
 "au BufRead,BufNewFile *.css 		set filetype=php
+au BufRead,BufNewFile *.pl      set filetype=perl6
 
 au BufRead,BufNewFile *.txt         setlocal ft=txt
 au! BufRead,BufNewFile *.mkd        setfiletype mkd
 au BufRead,BufNewFile *.todo        setfiletype todo
+
+"check for Perl 6 code
+function! LooksLikePerl6 ()
+  if getline(1) =~# '^#!.*/bin/.*perl6'
+    set filetype=perl6
+  else
+    for i in [1,2,3,4,5]
+      if getline(i) == 'use v6;'
+        set filetype=perl6
+        break
+      endif
+    endfor
+  endif
+endfunction
+au bufRead *.pm,*.t,*.pl call LooksLikePerl6()
 
 " }}}
 
@@ -100,16 +116,16 @@ set pastetoggle=§
 set wrap
 
 " backup settings
-set backup
-set backupdir=/home/niko/.vim-backup
-fun! InitBex()
-    let aika = strftime("%y%m%d-%H%M")
-    let myvar = "set backupext=_". aika
-    execute myvar
-    echo myvar
-endfun
-au BufWritePre * call InitBex()
-set backupskip=/tmp/*,/private/tmp/*
+"set backup
+"set backupdir=/home/niko/.vim-backup
+"fun! InitBex()
+"    let aika = strftime("%y%m%d-%H%M")
+"    let myvar = "set backupext=_". aika
+"    execute myvar
+"    echo myvar
+"endfun
+"au BufWritePre * call InitBex()
+"set backupskip=/tmp/*,/private/tmp/*
 
 " W for write
 "cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
@@ -328,7 +344,6 @@ let g:Powerline_symbols = 'fancy'
 set t_Co=256
 
 set clipboard=unnamedplus
-"colorscheme adrian
 colorscheme tuutti
 
 " Search files with unite.vim
