@@ -43,9 +43,14 @@ zmodload -a zsh/zprof zprof
 
 PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:~/bin:$PATH:$HOME/scripts:$HOME/.local/bin:$HOME/.composer/vendor/bin"
 TZ="Europe/Helsinki"
-HISTFILE=$HOME/.zhistory
-HISTSIZE=5000
-SAVEHIST=5000
+
+# History
+export HISTFILE=$HOME/.zhistory
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt hist_ignore_all_dups
+#setopt hist_ignore_space
+
 HOSTNAME="`hostname`"
 PAGER='less'
 EDITOR='vim'
@@ -376,7 +381,6 @@ bindkey -M viins '^R' history-incremental-pattern-search-backward
 bindkey -M viins '^F' history-incremental-pattern-search-forward
 
 # exports
-#export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;33'
 export CLICOLOR=1
 export DIRSTACKSIZE=9
@@ -412,18 +416,6 @@ function png2ico() { convert $1 -resize 16x16 -colors 256 $2 ;}
 # create directory and access it
 mcd(){mkdir -p "$1" && cd "$1"}
 
-# kapsi siilo mount thingies
-function siilo() {
-  if mountpoint -q "/media/siilo" ; then
-    echo "siilo was mounted"
-    chdir /media/siilo
-  else
-    echo "mounting siilo..."
-    sshfs host:path/siilo /media/siilo && chdir /media/siilo
-  fi
-}
-alias siilo_umount='fusermount -u /media/siilo'
-
 # run $2 $1 times
 function manytimes {
   n=0
@@ -439,55 +431,17 @@ function xrdbload() {
   xrdb -load ~/.Xdefaults && xrdb -load ~/.Xresources
 }
 
-function _scmb_git_last_branches {
-  fail_if_not_git_repo || return 1
-  # Use ruby to inject numbers into ls output
-  ruby -e "$( cat <<EOF
-    output = %x($_git_cmd for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)' $@)
-    line_count = output.lines.to_a.size
-    output.lines.each_with_index do |line, i|
-      spaces = (line_count > 9 && i < 9 ? " " : " ")
-      puts line.sub(/^([ *]{0})/, "\\\1\033[2;37m[\033[0m#{i+1}\033[2;37m]\033[0m" << spaces)
-    end
-EOF
-)"
-  # Set numbered file shortcut in variable
-  local e=1
-  for branch in $($_git_cmd for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'); do
-    export $git_env_char$e="$branch"
-    if [ "${scmbDebug:-}" = "true" ]; then echo "Set \$$git_env_char$e => $file"; fi
-    let e++
-  done
-}
-__git_alias "$git_last_branches" "_scmb_git_last_branches"
-
-function kapirauno() {
-  (cd $(git rev-parse --show-cdup)capistrano;cap development deploy)
-}
-
-whatthecommit() {
+function whatthecommit() {
   curl -s http://whatthecommit.com | perl -p0e '($_)=m{<p>(.+?)</p>}s'
-}
-
-function dcip() {
-  docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$@"
-}
-
-function dcssh() {
-  docker-compose exec "$@" bash
-}
-
-function dclogs() {
-  docker-compose logs "$0"
 }
 
 # }}}
 
 # {{{ Antigen external plugins
-source $HOME/antigen/antigen.zsh
+#source $HOME/antigen/antigen.zsh
 
 # Custom bundles
-antigen bundle robbyrussell/oh-my-zsh plugins/jira
+#antigen bundle robbyrussell/oh-my-zsh plugins/jira
 #antigen-bundle zsh-users/zsh-history-substring-search
 #bindkey "$terminfo[kcuu1]" history-substring-search-up
 #bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -500,7 +454,7 @@ antigen bundle robbyrussell/oh-my-zsh plugins/jira
 #antigen bundle command-not-found
 
 # Tell antigen that you're done.
-antigen apply
+#antigen apply
 
 # }}}
 
@@ -509,10 +463,14 @@ setxkbmap -option caps:none
 # fix ruby rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-# Automatically added by Platform.sh CLI installer
-export PATH="/home/niko/.platformsh/bin:$PATH"
-. '/home/niko/.platformsh/shell-config.rc' 2>/dev/null
+if [ -r /home/linuxbrew/.linuxbrew/Cellar/mcfly/v0.5.0/mcfly.zsh ]; then
+	. /home/linuxbrew/.linuxbrew/Cellar/mcfly/v0.5.0/mcfly.zsh
+fi
 
-# Set variable for deploy machine to see who is deploying.
-DEPLOY_USER=nriitala
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
+[ -s "/home/niko/.scm_breeze/scm_breeze.sh" ] && source "/home/niko/.scm_breeze/scm_breeze.sh"
